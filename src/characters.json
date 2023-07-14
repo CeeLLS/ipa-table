@@ -1,0 +1,12 @@
+[
+    { "char": "p", "place": ["Bilabial"], "subplace": [], "manner": ["Plosive"], "submanner": ["Voiceless"] },
+    { "char": "b", "place": ["Bilabial"], "subplace": [], "manner": ["Plosive"], "submanner": ["Voiced"] },
+    { "char": "t", "place": ["Dental", "Alveolar", "Postalveolar"], "subplace": [], "manner": ["Plosive"], "submanner": ["Voiceless"] },
+    { "char": "k", "place": ["Velar"], "subplace": [], "manner": ["Plosive"], "submanner": ["Voiceless"] },
+    { "char": "g", "place": ["Velar"], "subplace": [], "manner": ["Plosive"], "submanner": ["Voiced"] },
+
+    { "char": "m", "place": ["Bilabial"], "subplace": [], "manner": ["Nasal"], "submanner": ["Voiced"] },
+    { "char": "n", "place": ["Dental", "Alveolar", "Postalveolar"], "subplace": [], "manner": ["Nasal"], "submanner": ["Voiced"] }
+
+]
+  

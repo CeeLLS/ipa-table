@@ -1,0 +1,10 @@
+[
+    { "char": "p", "place": ["Bilabial"], "manner": ["Plosive"], "diacritics": [] },
+    { "char": "b", "place": ["Bilabial"], "manner": ["Plosive"], "diacritics": ["Voiced"] },
+    { "char": "t", "place": ["Dental", "Alveolar", "Postalveolar"], "manner": ["Plosive"], "diacritics": [] },
+    { "char": "k", "place": ["Velar"], "manner": ["Plosive"], "diacritics": [] },
+    
+    { "char": "m", "place": ["Bilabial"], "manner": ["Nasal"], "diacritics": []},
+    { "char": "n", "place": ["Dental", "Alveolar", "Postalveolar"], "manner": ["Nasal"], "diacritics": [] }
+
+]
