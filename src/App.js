@@ -1,7 +1,7 @@
-import "./App.css";
+import "./styles/App.css";
 import React from "react";
 import { Container } from "@mui/material";
-import Input from "./Input";
+import Input from "./components/Index";
 
 function App() {
   return (

@@ -1,7 +1,7 @@
 import { TextField } from "@mui/material";
 import React, { useState } from "react";
-import Characters from "./Characters";
-import json from "./characters.json";
+import Characters from "../utils/Characters";
+import json from "../data/characters.json";
 
 function Input() {
   const [inputValue, setInputValue] = useState("");
