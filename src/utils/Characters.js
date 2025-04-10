@@ -1,68 +1,22 @@
 import React, { useState } from "react";
 import json from "../data/characters.json";
-import { Table, TableRow, TableCell, TextField, Box, Button, Chip } from "@mui/material";
+import { Table, TableRow, TableCell, Box, Button, Chip } from "@mui/material";
 import "../styles/App.css";
-
-
-// const VirtualKeyboard = ({ chars, onSelect }) => (
-//   <Box
-//     display="grid"
-//     gridTemplateColumns="repeat(auto-fill, minmax(48px, 1fr))"
-//     gap={1}
-//     mb={2}
-//   >
-//     {chars.map((c) => (
-//       <Button
-//         key={c.char}
-//         variant="outlined"
-//         size="small"
-//         onClick={() => onSelect(c.char)}
-//       >
-//         {c.char}
-//       </Button>
-//     ))}
-//   </Box>
-// );
-
-// const TokenDisplay = ({ tokens, onRemove }) => (
-//   <Box display="flex" flexWrap="wrap" gap={1} mb={2}>
-//     {tokens.map((tk, idx) => (
-//       <Chip
-//         key={`${tk}-${idx}`}
-//         label={`/${tk}/`}
-//         onDelete={() => onRemove(idx)}
-//         size="small"
-//       />
-//     ))}
-//   </Box>
-// );
-
-
-
-
-
 
 function Characters() {
   const [tokens, setTokens] = useState([]);
   const [manners, setManners] = useState({});
-  // const [input, setInput] = useState("");
   const [addedChars, setAddedChars] = useState(new Set());
 
 
+  const ignoreSubplacesFor = ["Velar"];
+
+  const ignoreSubmannersFor = ["Fricative", "Affricate", "Plosive"];
+
   const VirtualKeyboard = ({ chars, onSelect }) => (
-    <Box
-      display="grid"
-      gridTemplateColumns="repeat(auto-fill, minmax(48px, 1fr))"
-      gap={1}
-      mb={2}
-    >
+    <Box display="grid" gridTemplateColumns="repeat(auto-fill, minmax(48px, 1fr))" gap={1} mb={2}>
       {chars.map((c) => (
-        <Button
-          key={c.char}
-          variant="outlined"
-          size="small"
-          onClick={() => onSelect(c.char)}
-        >
+        <Button key={c.char} variant="outlined" size="small" onClick={() => onSelect(c.char)}>
           {c.char}
         </Button>
       ))}
@@ -72,12 +26,7 @@ function Characters() {
   const TokenDisplay = ({ tokens, onRemove }) => (
     <Box display="flex" flexWrap="wrap" gap={1} mb={2}>
       {tokens.map((tk, idx) => (
-        <Chip
-          key={`${tk}-${idx}`}
-          label={`/${tk}/`}
-          onDelete={() => onRemove(idx)}
-          size="small"
-        />
+        <Chip key={`${tk}-${idx}`} label={`/${tk}/`} onDelete={() => onRemove(idx)} size="small" />
       ))}
     </Box>
   );
@@ -89,28 +38,33 @@ function Characters() {
     }
   };
 
-  // Quando o usuário remove um bloco/token:
   const handleRemove = (idx) => {
     const removed = tokens[idx];
     setTokens((t) => t.filter((_, i) => i !== idx));
     handleRemoveChar(removed);
   };
 
-
+  // Ao adicionar o caractere, se o place estiver em ignoreSubplacesFor usamos "all" (mas agora essa decisão só impacta o header e corpo)
+  // Se o manner estiver em ignoreSubmannersFor, sobrescrevemos submanner para ["all"].
   const handleAddChar = (char) => {
     const charData = json.find((item) => item.char === char);
     if (!charData) return;
-  
-    // Usa o primeiro subplace, ou "N/A" se não houver
+    
+    // Para subplace, usamos o primeiro se existir; caso contrário, "N/A".
+    // Essa lógica não é alterada, pois o agrupamento para places ignorados será feito na renderização.
     const subplace = charData.subplace.length > 0 ? charData.subplace[0] : "N/A";
     const manner = charData.manner[0];
-  
+    const ignoreSubmanner = ignoreSubmannersFor.includes(manner);
+    const newCharData = {
+      ...charData,
+      submanner: ignoreSubmanner ? ["all"] : charData.submanner,
+    };
+
     setManners((prev) => {
       const newManners = { ...prev };
       if (!newManners[manner]) {
         newManners[manner] = {};
       }
-      // Itera por todos os valores de place
       charData.place.forEach((place) => {
         if (!newManners[manner][place]) {
           newManners[manner][place] = {};
@@ -118,17 +72,15 @@ function Characters() {
         if (!newManners[manner][place][subplace]) {
           newManners[manner][place][subplace] = [];
         }
-        // Adiciona o caractere se ainda não estiver presente
         if (!newManners[manner][place][subplace].some((item) => item.char === char)) {
-          newManners[manner][place][subplace].push(charData);
+          newManners[manner][place][subplace].push(newCharData);
         }
       });
       return newManners;
     });
-  
+    
     setAddedChars((prev) => new Set(prev).add(char));
   };
-  
 
   const handleRemoveChar = (char) => {
     setManners((prev) => {
@@ -153,7 +105,7 @@ function Characters() {
       });
       return newManners;
     });
-
+    
     setAddedChars((prev) => {
       const newSet = new Set(prev);
       newSet.delete(char);
@@ -161,60 +113,39 @@ function Characters() {
     });
   };
 
-  // const handleInputChange = (e) => {
-  //   const value = e.target.value;
-  //   const validChars = [...new Set(value.split(""))].filter((char) =>
-  //     json.some((item) => item.char === char)
-  //   );
-
-  //   setInput(validChars.join(""));
-
-  //   validChars.forEach((char) => {
-  //     if (!addedChars.has(char)) {
-  //       handleAddChar(char);
-  //     }
-  //   });
-
-  //   [...addedChars].forEach((char) => {
-  //     if (!validChars.includes(char)) {
-  //       handleRemoveChar(char);
-  //     }
-  //   });
-  // };
-
-  // Variáveis fixas para a tabela
   const allPlaces = ["Bilabial", "Labiodental", "Dental", "Alveolar", "Postalveolar", "Retroflex", "Palatal", "Velar", "Uvular", "Pharyngeal", "Glottal"];
-  const allSubplaces = ["Unvoiced", "Voiced", "Labialized"];
+  const allSubplaces = ["Unvoiced", "Voiced", "Labialized", "Palatalized", "Velarized", "Pharyngealized"];
   const allManners = ["Plosive", "Affricate", "Nasal", "Trill", "Tap", "Fricative", "Lateral", "Approximant"];
-  const allSubmanners = ["Voiceless", "Voiced"];
+  const allSubmanners = ["Voiceless", "Voiced", "Ejective"];
 
-  // Se algum caractere não tiver subplace definido, será "N/A"
+  // Caso algum caractere não tenha subplace, usamos "N/A"
   const includeNA = Object.keys(manners).some((manner) =>
     Object.keys(manners[manner] || {}).some((place) =>
       Object.keys(manners[manner][place] || {}).includes("N/A")
     )
   );
   const subplacesToRender = includeNA ? [...allSubplaces, "N/A"] : allSubplaces;
-
-  // Função utilitária para determinar o colSpan: "N/A" ocupa 2 colunas
-  const getSubplaceColSpan = (subplace) => {
-    return subplace === "N/A" ? 1 : 1;
-  };
+  
+  const getSubplaceColSpan = (subplace) => 1;
 
   const TableHeader = () => {
-    // Inclui todos os lugares que possuem dados em "manners"
     const placesWithData = allPlaces.filter((place) =>
       Object.keys(manners).some((manner) =>
         Object.keys(manners[manner] || {}).includes(place)
       )
     );
   
+    // Para places que não forem ignorados, tenta obter os subplaces com dados; se não houver, usa ["N/A"].
     const getSubplacesForPlace = (place) => {
-      return subplacesToRender.filter((subplace) =>
+      if (ignoreSubplacesFor.includes(place)) {
+        return []; // sinaliza que não há subdivisão para este place
+      }
+      const subs = subplacesToRender.filter((subplace) =>
         Object.keys(manners).some((manner) =>
           (manners[manner]?.[place]?.[subplace] || []).length > 0
         )
       );
+      return subs.length ? subs : ["N/A"];
     };
   
     return (
@@ -224,17 +155,16 @@ function Characters() {
           <TableCell />
           {placesWithData.map((place) => {
             const subs = getSubplacesForPlace(place);
-            if (subs.length === 1 && subs[0] === "N/A") {
+            // Se o place deve ignorar subplaces ou se há apenas um subplace "N/A",
+            // renderiza uma célula única (que ocupará as duas linhas do header).
+            if (ignoreSubplacesFor.includes(place) || (subs.length === 1 && subs[0] === "N/A")) {
               return (
                 <TableCell key={place} align="center" rowSpan={2}>
                   {place}
                 </TableCell>
               );
             } else {
-              const colSpan = subs.reduce(
-                (acc, sub) => acc + getSubplaceColSpan(sub),
-                0
-              );
+              const colSpan = subs.reduce((acc, sub) => acc + getSubplaceColSpan(sub), 0);
               return (
                 <TableCell key={place} align="center" colSpan={colSpan}>
                   {place}
@@ -247,15 +177,12 @@ function Characters() {
           <TableCell />
           <TableCell />
           {placesWithData.map((place) => {
+            // Para places ignorados, não renderiza a segunda linha
+            if (ignoreSubplacesFor.includes(place)) return null;
             const subs = getSubplacesForPlace(place);
             if (subs.length === 1 && subs[0] === "N/A") return null;
-            return subs.map((subplace) => (
-              <TableCell
-                key={`${place}-${subplace}`}
-                align="center"
-                colSpan={getSubplaceColSpan(subplace)}
-              >
-                {/* Substituir "N/A" por "Plain" para qualquer lugar */}
+            return subs.map((subplace, idx) => (
+              <TableCell key={`${place}-${subplace}-${idx}`} align="center" colSpan={getSubplaceColSpan(subplace)}>
                 {subplace === "N/A" ? "Plain" : subplace}
               </TableCell>
             ));
@@ -264,179 +191,176 @@ function Characters() {
       </>
     );
   };
+  
+  
 
-const mergeCells = (cells) => {
-  const merged = [];
-  for (let i = 0; i < cells.length; i++) {
-    let mergeCount = 1;
-    while (
-      i + 1 < cells.length &&
-      cells[i].content.trim() === cells[i + 1].content.trim() // Remove espaços extras
-    ) {
-      mergeCount++;
-      i++;
+  const mergeCells = (cells) => {
+    const merged = [];
+    for (let i = 0; i < cells.length; i++) {
+      let mergeCount = 1;
+      while (
+        i + 1 < cells.length &&
+        cells[i].content.trim() === cells[i + 1].content.trim()
+      ) {
+        mergeCount++;
+        i++;
+      }
+      merged.push({ content: cells[i].content.trim(), key: cells[i].key, colSpan: mergeCount });
     }
-    merged.push({ content: cells[i].content.trim(), key: cells[i].key, colSpan: mergeCount });
-  }
-  return merged;
-};
+    return merged;
+  };
 
-const TableBody = () => {
-  const placesWithData = allPlaces.filter((place) =>
-    Object.keys(manners).some((manner) =>
-      Object.keys(manners[manner] || {}).includes(place)
-    )
-  );
 
-  const subplacesWithData = (place) =>
-    subplacesToRender.filter((subplace) =>
-      subplace === "N/A" ||
+  const TableBody = () => {
+    const placesWithData = allPlaces.filter((place) =>
       Object.keys(manners).some((manner) =>
-        manners[manner]?.[place]?.[subplace]?.length
+        Object.keys(manners[manner] || {}).includes(place)
       )
     );
-
-  return (
-    <>
-      {allManners.map((manner) => {
-        const hasData = Object.keys(manners[manner] || {}).length > 0;
-        if (!hasData) return null;
-
-        // Descobre quantos submanners esse manner tem
-        const submannersForManner = allSubmanners.filter((submanner) =>
-          Object.keys(manners[manner] || {}).some((place) =>
-            Object.keys(manners[manner][place] || {}).some((subplace) =>
-              manners[manner][place][subplace]?.some((item) =>
-                item.submanner.includes(submanner)
-              )
-            )
-          )
-        );
-
-        // CASO ESPECIAL: só 1 submanner
-        if (submannersForManner.length === 1) {
-          const subm = submannersForManner[0];
-
-          // Gera os dados das células para este único submanner
-          const cellsData = placesWithData.flatMap((place) =>
-            subplacesWithData(place).map((subplace) => {
-              const items = Object.keys(manners[manner] || {}).flatMap(
-                (placeKey) =>
-                  (manners[manner]?.[placeKey]?.[subplace] || []).filter(
-                    (item) =>
-                      item.submanner.includes(subm) &&
-                      item.place.includes(place)
+  
+    // Para places que não estão ignorados, retorna os subplaces com dados; se não houver, usa ["N/A"].
+    const subplacesWithData = (place) => {
+      if (ignoreSubplacesFor.includes(place)) {
+        return null; // indica que esse place não será subdividido
+      }
+      const subs = subplacesToRender.filter((subplace) =>
+        Object.keys(manners).some((manner) =>
+          (manners[manner]?.[place]?.[subplace] || []).length > 0
+        )
+      );
+      return subs.length ? subs : ["N/A"];
+    };
+  
+    return (
+      <>
+        {allManners.map((manner) => {
+          if (!manners[manner]) return null;
+  
+          const submannersForManner = ignoreSubmannersFor.includes(manner)
+            ? ["all"]
+            : allSubmanners.filter((submanner) =>
+                Object.keys(manners[manner] || {}).some((place) =>
+                  Object.keys(manners[manner][place] || {}).some((subplace) =>
+                    manners[manner][place][subplace]?.some((item) =>
+                      item.submanner.includes(submanner)
+                    )
                   )
+                )
               );
-              const uniqueChars = Array.from(new Set(items.map((i) => i.char)));
-              return {
-                key: `${manner}-${place}-${subplace}-${subm}`,
-                content: uniqueChars.join(" "),
-              };
-            })
-          );
-
-          // Aplica mergeCells para fundir colunas com mesmo conteúdo
-          const merged = mergeCells(cellsData);
-
-          return (
-            <TableRow key={manner}>
-              {/* Junta manner + submanner numa célula só */}
-              <TableCell align="center" colSpan={2}>
-                {manner}
-              </TableCell>
-              {/* Renderiza as células mescladas */}
-              {merged.map((cell) => (
-                <TableCell
-                  key={cell.key}
-                  align="center"
-                  colSpan={cell.colSpan}
-                >
-                  {cell.content
-                    .split(" ")
-                    .filter(Boolean)
-                    .map((ch, idx) => (
-                      <div key={idx}>/{ch}/</div>
-                    ))}
-                </TableCell>
-              ))}
-            </TableRow>
-          );
-        }
-
-        // CASO NORMAL: múltiplos submanners (seu código original)
-        return (
-          <React.Fragment key={manner}>
-            {allSubmanners.map((submanner, submIdx) => {
-              // Gera os dados das células para este submanner
-              const cellsData = placesWithData.flatMap((place) =>
-                subplacesWithData(place).map((subplace) => {
-                  const items = Object.keys(manners[manner] || {}).flatMap(
-                    (placeKey) =>
-                      (manners[manner]?.[placeKey]?.[subplace] || []).filter(
-                        (item) =>
-                          item.submanner.includes(submanner) &&
-                          item.place.includes(place)
-                      )
+  
+          if (submannersForManner.length === 1) {
+            const subm = submannersForManner[0];
+            const cellsData = placesWithData.flatMap((place) => {
+              if (ignoreSubplacesFor.includes(place)) {
+                const keys = Object.keys(manners[manner][place] || {});
+                const items = keys.flatMap((k) =>
+                  (manners[manner][place][k] || []).filter((item) => item.submanner.includes(subm))
+                );
+                const uniqueChars = Array.from(new Set(items.map((i) => i.char)));
+                return [{
+                  key: `${manner}-${place}-all-${subm}`,
+                  content: uniqueChars.join(" "),
+                }];
+              } else {
+                return subplacesWithData(place).map((subplace) => {
+                  const items = Object.keys(manners[manner] || {}).flatMap((placeKey) =>
+                    (manners[manner]?.[placeKey]?.[subplace] || []).filter(
+                      (item) =>
+                        item.submanner.includes(subm) && item.place.includes(place)
+                    )
                   );
                   const uniqueChars = Array.from(new Set(items.map((i) => i.char)));
                   return {
-                    key: `${manner}-${place}-${subplace}-${submanner}`,
+                    key: `${manner}-${place}-${subplace}-${subm}`,
                     content: uniqueChars.join(" "),
                   };
-                })
-              );
-
-              const merged = mergeCells(cellsData);
-
-              return (
-                <TableRow key={`${manner}-${submanner}`}>
-                  {submIdx === 0 && (
-                    <TableCell
-                      align="center"
-                      rowSpan={submannersForManner.length}
-                    >
-                      {manner}
-                    </TableCell>
-                  )}
-                  <TableCell align="center">{submanner}</TableCell>
-                  {merged.map((cell) => (
-                    <TableCell
-                      key={cell.key}
-                      align="center"
-                      colSpan={cell.colSpan}
-                    >
-                      {cell.content
-                        .split(" ")
-                        .filter(Boolean)
-                        .map((ch, idx) => (
+                });
+              }
+            });
+  
+            const merged = mergeCells(cellsData);
+  
+            return (
+              <TableRow key={manner}>
+                <TableCell align="center" colSpan={2}>{manner}</TableCell>
+                {merged.map((cell) => (
+                  <TableCell key={cell.key} align="center" colSpan={cell.colSpan}>
+                    {cell.content.split(" ").filter(Boolean).map((ch, idx) => (
+                      <div key={idx}>/{ch}/</div>
+                    ))}
+                  </TableCell>
+                ))}
+              </TableRow>
+            );
+          }
+  
+          return (
+            <React.Fragment key={manner}>
+              {submannersForManner.map((submanner, submIdx) => {
+                const cellsData = placesWithData.flatMap((place) => {
+                  if (ignoreSubplacesFor.includes(place)) {
+                    const keys = Object.keys(manners[manner][place] || {});
+                    const items = keys.flatMap((k) =>
+                      (manners[manner][place][k] || []).filter((item) => item.submanner.includes(submanner))
+                    );
+                    const uniqueChars = Array.from(new Set(items.map((i) => i.char)));
+                    return [{
+                      key: `${manner}-${place}-all-${submanner}`,
+                      content: uniqueChars.join(" "),
+                    }];
+                  } else {
+                    return subplacesWithData(place).map((subplace) => {
+                      const items = Object.keys(manners[manner] || {}).flatMap((placeKey) =>
+                        (manners[manner]?.[placeKey]?.[subplace] || []).filter(
+                          (item) =>
+                            item.submanner.includes(submanner) && item.place.includes(place)
+                        )
+                      );
+                      const uniqueChars = Array.from(new Set(items.map((i) => i.char)));
+                      return {
+                        key: `${manner}-${place}-${subplace}-${submanner}`,
+                        content: uniqueChars.join(" "),
+                      };
+                    });
+                  }
+                });
+  
+                const merged = mergeCells(cellsData);
+  
+                return (
+                  <TableRow key={`${manner}-${submanner}`}>
+                    {submIdx === 0 && (
+                      <TableCell align="center" rowSpan={submannersForManner.length}>
+                        {manner}
+                      </TableCell>
+                    )}
+                    <TableCell align="center">{submanner}</TableCell>
+                    {merged.map((cell) => (
+                      <TableCell key={cell.key} align="center" colSpan={cell.colSpan}>
+                        {cell.content.split(" ").filter(Boolean).map((ch, idx) => (
                           <div key={idx}>/{ch}/</div>
                         ))}
-                    </TableCell>
-                  ))}
-                </TableRow>
-              );
-            })}
-          </React.Fragment>
-        );
-      })}
-    </>
-  );
-};
-
-
-
-
-
+                      </TableCell>
+                    ))}
+                  </TableRow>
+                );
+              })}
+            </React.Fragment>
+          );
+        })}
+      </>
+    );
+  };
+  
+  
+  
   const renderTable = () => (
     <Table>
       <TableHeader />
       <TableBody />
     </Table>
   );
-
-
-
+  
   return (
     <div>
       <VirtualKeyboard chars={json} onSelect={handleSelect} />
@@ -445,5 +369,5 @@ const TableBody = () => {
     </div>
   );
 }
-
+  
 export default Characters;

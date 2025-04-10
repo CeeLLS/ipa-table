@@ -18,9 +18,16 @@
     { "char": "w", "place": ["Labial", "Velar"], "subplace": [], "manner": ["Approximant"], "submanner": ["Voiced"] },
     { "char": "k", "place": ["Velar"], "subplace": [], "manner": ["Plosive"], "submanner": ["Voiceless"] },
     { "char": "g", "place": ["Velar"], "subplace": [], "manner": ["Plosive"], "submanner": ["Voiced"] },
+    { "char": "k'", "place": ["Velar"], "subplace": [], "manner": ["Plosive"], "submanner": ["Ejective"] },
     { "char": "m", "place": ["Bilabial"], "subplace": [], "manner": ["Nasal"], "submanner": ["Voiced"] },
     { "char": "n", "place": ["Dental", "Alveolar", "Postalveolar"], "subplace": [], "manner": ["Nasal"], "submanner": ["Voiced"] },
     { "char": "s", "place": ["Alveolar"], "subplace": [], "manner": ["Fricative"], "submanner": ["Voiceless"] },
-    { "char": "z", "place": ["Alveolar"], "subplace": [], "manner": ["Fricative"], "submanner": ["Voiced"] }
+    { "char": "z", "place": ["Alveolar"], "subplace": [], "manner": ["Fricative"], "submanner": ["Voiced"] },
+    { "char": "ŋ", "place": ["Velar"], "subplace": [], "manner": ["Nasal"], "submanner": ["Voiced"] },
+    { "char": "kʷ", "place": ["Velar"], "subplace": ["Labialized"], "manner": ["Plosive"], "submanner": ["Voiceless"] },
+    { "char": "gʷ", "place": ["Velar"], "subplace": ["Labialized"], "manner": ["Plosive"], "submanner": ["Voiced"] },    
+    { "char": "kʲ", "place": ["Velar"], "subplace": ["Palatalized"], "manner": ["Plosive"], "submanner": ["Voiceless"] },
+    { "char": "gʲ", "place": ["Velar"], "subplace": ["Palatalized"], "manner": ["Plosive"], "submanner": ["Voiced"] },
+    { "char": "ʔ", "place": ["Glottal"], "subplace": [], "manner": ["Plosive"], "submanner": ["Voiceless"] }
   ]
   
