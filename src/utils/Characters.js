@@ -9,9 +9,8 @@ function Characters() {
   const [addedChars, setAddedChars] = useState(new Set());
 
 
-  const ignoreSubplacesFor = ["Velar"];
-
-  const ignoreSubmannersFor = ["Fricative", "Affricate", "Plosive"];
+  const ignoreSubplacesFor = [];
+  const ignoreSubmannersFor = []; 
 
   const VirtualKeyboard = ({ chars, onSelect }) => (
     <Box display="grid" gridTemplateColumns="repeat(auto-fill, minmax(48px, 1fr))" gap={1} mb={2}>
@@ -44,14 +43,10 @@ function Characters() {
     handleRemoveChar(removed);
   };
 
-  // Ao adicionar o caractere, se o place estiver em ignoreSubplacesFor usamos "all" (mas agora essa decisão só impacta o header e corpo)
-  // Se o manner estiver em ignoreSubmannersFor, sobrescrevemos submanner para ["all"].
   const handleAddChar = (char) => {
     const charData = json.find((item) => item.char === char);
     if (!charData) return;
     
-    // Para subplace, usamos o primeiro se existir; caso contrário, "N/A".
-    // Essa lógica não é alterada, pois o agrupamento para places ignorados será feito na renderização.
     const subplace = charData.subplace.length > 0 ? charData.subplace[0] : "N/A";
     const manner = charData.manner[0];
     const ignoreSubmanner = ignoreSubmannersFor.includes(manner);
@@ -118,7 +113,6 @@ function Characters() {
   const allManners = ["Plosive", "Affricate", "Nasal", "Trill", "Tap", "Fricative", "Lateral", "Approximant"];
   const allSubmanners = ["Voiceless", "Voiced", "Ejective"];
 
-  // Caso algum caractere não tenha subplace, usamos "N/A"
   const includeNA = Object.keys(manners).some((manner) =>
     Object.keys(manners[manner] || {}).some((place) =>
       Object.keys(manners[manner][place] || {}).includes("N/A")
@@ -135,10 +129,10 @@ function Characters() {
       )
     );
   
-    // Para places que não forem ignorados, tenta obter os subplaces com dados; se não houver, usa ["N/A"].
+
     const getSubplacesForPlace = (place) => {
       if (ignoreSubplacesFor.includes(place)) {
-        return []; // sinaliza que não há subdivisão para este place
+        return []; 
       }
       const subs = subplacesToRender.filter((subplace) =>
         Object.keys(manners).some((manner) =>
@@ -155,8 +149,6 @@ function Characters() {
           <TableCell />
           {placesWithData.map((place) => {
             const subs = getSubplacesForPlace(place);
-            // Se o place deve ignorar subplaces ou se há apenas um subplace "N/A",
-            // renderiza uma célula única (que ocupará as duas linhas do header).
             if (ignoreSubplacesFor.includes(place) || (subs.length === 1 && subs[0] === "N/A")) {
               return (
                 <TableCell key={place} align="center" rowSpan={2}>
@@ -177,7 +169,6 @@ function Characters() {
           <TableCell />
           <TableCell />
           {placesWithData.map((place) => {
-            // Para places ignorados, não renderiza a segunda linha
             if (ignoreSubplacesFor.includes(place)) return null;
             const subs = getSubplacesForPlace(place);
             if (subs.length === 1 && subs[0] === "N/A") return null;
@@ -191,7 +182,6 @@ function Characters() {
       </>
     );
   };
-  
   
 
   const mergeCells = (cells) => {
@@ -218,10 +208,9 @@ function Characters() {
       )
     );
   
-    // Para places que não estão ignorados, retorna os subplaces com dados; se não houver, usa ["N/A"].
     const subplacesWithData = (place) => {
       if (ignoreSubplacesFor.includes(place)) {
-        return null; // indica que esse place não será subdividido
+        return null; 
       }
       const subs = subplacesToRender.filter((subplace) =>
         Object.keys(manners).some((manner) =>
