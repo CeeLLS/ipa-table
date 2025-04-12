@@ -1,13 +1,13 @@
 import "./styles/App.css";
 import React from "react";
 import { Container } from "@mui/material";
-import Input from "./components/Index";
+import CharactersContainer from "./components/CharactersContainer";
 
 function App() {
   return (
     <div className="App">
       <Container>
-        <Input />
+        <CharactersContainer />
       </Container>
     </div>
   );
