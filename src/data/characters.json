@@ -28,6 +28,9 @@
     { "char": "gʷ", "place": ["Velar"], "subplace": ["Labialized"], "manner": ["Plosive"], "submanner": ["Voiced"] },    
     { "char": "kʲ", "place": ["Velar"], "subplace": ["Palatalized"], "manner": ["Plosive"], "submanner": ["Voiceless"] },
     { "char": "gʲ", "place": ["Velar"], "subplace": ["Palatalized"], "manner": ["Plosive"], "submanner": ["Voiced"] },
-    { "char": "ʔ", "place": ["Glottal"], "subplace": [], "manner": ["Plosive"], "submanner": ["Voiceless"] }
+    { "char": "ʔ", "place": ["Glottal"], "subplace": [], "manner": ["Plosive"], "submanner": ["Voiceless"] },
+    { "char": "pʼˀ", "place": ["Bilabial"], "subplace": [], "manner": ["Plosive"], "submanner": ["Ejective", "Glottalized"] },
+    { "char": "pʷʲ", "place": ["Bilabial"], "subplace": ["Labialized", "Palatalized"], "manner": ["Plosive"], "submanner": ["Voiced"] },
+    { "char": "ø", "place": ["Bilabial"], "subplace": [], "manner": ["Approximant", "Fricative"], "submanner": ["Voiceless"] }
   ]
   

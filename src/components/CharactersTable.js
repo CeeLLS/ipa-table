@@ -1,4 +1,3 @@
-// components/CharactersTable.js
 import React from "react";
 import { Table } from "@mui/material";
 import TableHeader from "./TableHeader";

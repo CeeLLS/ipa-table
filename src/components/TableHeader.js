@@ -1,38 +1,49 @@
 import React from "react";
 import { TableRow, TableCell } from "@mui/material";
+import orderConfig from "../data/orderConfig.json";
 
 function TableHeader({ manners, ignorePlaces }) {
-  const allPlaces = [
-    "Bilabial", "Labiodental", "Dental", "Alveolar", "Postalveolar",
-    "Retroflex", "Palatal", "Velar", "Uvular", "Pharyngeal", "Glottal"
-  ];
-  const allSubplaces = [
-    "Unvoiced", "Voiced", "Labialized", "Palatalized", "Velarized", "Pharyngealized"
-  ];
+  const allPlaces = orderConfig.placeOrder;
 
-  const includeNA = Object.keys(manners).some((manner) =>
-    Object.keys(manners[manner] || {}).some((place) =>
-      Object.keys(manners[manner][place] || {}).includes("N/A")
-    )
-  );
-  const subplacesToRender = includeNA ? [...allSubplaces, "N/A"] : allSubplaces;
 
   const getSubplacesForPlace = (place) => {
-    if (ignorePlaces.includes(place)) {
-      return [];
-    }
-    const subs = subplacesToRender.filter((subplace) =>
-      Object.keys(manners).some((manner) =>
-        (manners[manner]?.[place]?.[subplace] || []).length > 0
-      )
-    );
-    return subs.length ? subs : ["N/A"];
+    if (ignorePlaces.includes(place)) return [];
+    const combos = new Set();
+    Object.keys(manners).forEach((manner) => {
+      const placeData = manners[manner][place];
+      if (placeData) {
+        Object.keys(placeData).forEach((subKey) => {
+          placeData[subKey].forEach((item) => {
+            let subCombo;
+            if (item.subplace && item.subplace.length > 0) {
+              const sortedSubplaces = Array.from(item.subplace).sort((a, b) =>
+                orderConfig.subplaceOrder.indexOf(a) - orderConfig.subplaceOrder.indexOf(b)
+              );
+              subCombo = sortedSubplaces.join(" & ");
+            } else {
+              subCombo = "N/A";
+            }
+            combos.add(subCombo);
+          });
+        });
+      }
+    });
+    const combosArr = combos.size > 0 ? Array.from(combos) : ["N/A"];
+    combosArr.sort((a, b) => {
+      const arrA = a.split(" & ");
+      const arrB = b.split(" & ");
+      for (let i = 0; i < Math.min(arrA.length, arrB.length); i++) {
+        const idxA = orderConfig.subplaceOrder.indexOf(arrA[i]);
+        const idxB = orderConfig.subplaceOrder.indexOf(arrB[i]);
+        if (idxA !== idxB) return idxA - idxB;
+      }
+      return arrA.length - arrB.length;
+    });
+    return combosArr;
   };
 
   const placesWithData = allPlaces.filter((place) =>
-    Object.keys(manners).some((manner) =>
-      Object.keys(manners[manner] || {}).includes(place)
-    )
+    Object.keys(manners).some((manner) => manners[manner]?.[place])
   );
 
   return (
