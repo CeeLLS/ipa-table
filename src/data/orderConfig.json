@@ -1,7 +1,34 @@
 {
-    "mannerOrder": ["Plosive", "Affricate", "Nasal", "Trill", "Tap", "Fricative", "Lateral", "Approximant"],
-    "placeOrder": ["Bilabial", "Labiodental", "Dental", "Alveolar", "Postalveolar", "Retroflex", "Palatal", "Velar", "Uvular", "Pharyngeal", "Glottal"],
-    "subplaceOrder": ["Unvoiced", "Voiced", "Labialized", "Palatalized", "Velarized", "Pharyngealized"],
-    "submannerOrder": ["Voiceless", "Voiced", "Ejective"]
-  }
-  
+  "mannerOrder": [
+    "Plosive",
+    "Affricate",
+    "Nasal",
+    "Trill",
+    "Tap",
+    "Fricative",
+    "Lateral",
+    "Approximant"
+  ],
+  "placeOrder": [
+    "Bilabial",
+    "Labiodental",
+    "Dental",
+    "Alveolar",
+    "Postalveolar",
+    "Retroflex",
+    "Palatal",
+    "Velar",
+    "Uvular",
+    "Pharyngeal",
+    "Glottal"
+  ],
+  "subplaceOrder": [
+    "Unvoiced",
+    "Voiced",
+    "Labialized",
+    "Palatalized",
+    "Velarized",
+    "Pharyngealized"
+  ],
+  "submannerOrder": ["Voiceless", "Voiced", "Ejective"]
+}

@@ -5,8 +5,8 @@ function VirtualKeyboard({ chars, onSelect }) {
   return (
     <Box className="virtual-keyboard">
       {chars.map((c) => (
-        <Button 
-          key={c.char} 
+        <Button
+          key={c.char}
           className="keyboard-button"
           onClick={() => onSelect(c.char)}
         >

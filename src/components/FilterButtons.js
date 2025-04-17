@@ -1,8 +1,8 @@
-import React from 'react';
-import { Button, Box } from '@mui/material';
+import React from "react";
+import { Button, Box } from "@mui/material";
 
 const FilterButtons = ({
-  manners,            
+  manners,
   allManners,
   allPlaces,
   ignoreManners,
@@ -10,25 +10,25 @@ const FilterButtons = ({
   ignorePlaces,
   setIgnorePlaces,
 }) => {
-  const filteredManners = allManners.filter(manner => {
+  const filteredManners = allManners.filter((manner) => {
     const mannerData = manners[manner];
     if (!mannerData) return false;
     const submannerSet = new Set();
-    Object.values(mannerData).forEach(placeData => {
-      Object.values(placeData).forEach(arr => {
-        arr.forEach(item => {
-          item.submanner.forEach(sm => submannerSet.add(sm));
+    Object.values(mannerData).forEach((placeData) => {
+      Object.values(placeData).forEach((arr) => {
+        arr.forEach((item) => {
+          item.submanner.forEach((sm) => submannerSet.add(sm));
         });
       });
     });
     return submannerSet.size > 1;
   });
 
-  const filteredPlaces = allPlaces.filter(place => {
+  const filteredPlaces = allPlaces.filter((place) => {
     let subplaces = new Set();
-    Object.values(manners).forEach(mannerData => {
+    Object.values(manners).forEach((mannerData) => {
       if (mannerData[place]) {
-        Object.keys(mannerData[place]).forEach(subplace => {
+        Object.keys(mannerData[place]).forEach((subplace) => {
           subplaces.add(subplace);
         });
       }
@@ -60,7 +60,9 @@ const FilterButtons = ({
           {filteredManners.map((manner) => (
             <Button
               key={manner}
-              variant={ignoreManners.includes(manner) ? "contained" : "outlined"}
+              variant={
+                ignoreManners.includes(manner) ? "contained" : "outlined"
+              }
               onClick={() => toggleManner(manner)}
             >
               {manner}

@@ -36,7 +36,7 @@ const AddCharacterMenu = ({
     setSubplaces((prev) =>
       prev.includes(modName)
         ? prev.filter((item) => item !== modName)
-        : [...prev, modName]
+        : [...prev, modName],
     );
   };
 
@@ -44,13 +44,13 @@ const AddCharacterMenu = ({
     setSubmanners((prev) =>
       prev.includes(modName)
         ? prev.filter((item) => item !== modName)
-        : [...prev, modName]
+        : [...prev, modName],
     );
   };
 
   const togglePlace = (p) => {
     setPlace((prev) =>
-      prev.includes(p) ? prev.filter((item) => item !== p) : [...prev, p]
+      prev.includes(p) ? prev.filter((item) => item !== p) : [...prev, p],
     );
   };
 
@@ -58,7 +58,7 @@ const AddCharacterMenu = ({
     return names
       .map(
         (name) =>
-          ipaModifiers[modifierType].find((m) => m.name === name)?.symbol || ""
+          ipaModifiers[modifierType].find((m) => m.name === name)?.symbol || "",
       )
       .join("");
   };
@@ -103,7 +103,7 @@ const AddCharacterMenu = ({
         label="Copy from fixed table"
         className="form-control-label"
       />
-  
+
       {copyMode ? (
         <FormControl className="form-control-select" required>
           <InputLabel className="select-label">Fixed Character</InputLabel>
@@ -129,7 +129,7 @@ const AddCharacterMenu = ({
           className="text-input"
         />
       )}
-  
+
       <Accordion className="custom-accordion">
         <AccordionSummary
           expandIcon={<span className="expand-icon">↓</span>}
@@ -143,12 +143,12 @@ const AddCharacterMenu = ({
               <Grid item key={m}>
                 <Tooltip title={m}>
                   <Button
-                    className={`manner-button ${manner.includes(m) ? 'contained' : ''}`}
+                    className={`manner-button ${manner.includes(m) ? "contained" : ""}`}
                     onClick={() =>
                       setManner((prev) =>
                         prev.includes(m)
                           ? prev.filter((item) => item !== m)
-                          : [...prev, m]
+                          : [...prev, m],
                       )
                     }
                     size="small"
@@ -161,7 +161,7 @@ const AddCharacterMenu = ({
           </Grid>
         </AccordionDetails>
       </Accordion>
-  
+
       <Accordion className="custom-accordion">
         <AccordionSummary
           expandIcon={<span className="expand-icon">↓</span>}
@@ -175,7 +175,7 @@ const AddCharacterMenu = ({
               <Grid item key={p}>
                 <Tooltip title={p}>
                   <Button
-                    className={`place-button ${place.includes(p) ? 'contained' : ''}`}
+                    className={`place-button ${place.includes(p) ? "contained" : ""}`}
                     onClick={() => togglePlace(p)}
                     size="small"
                   >
@@ -187,7 +187,7 @@ const AddCharacterMenu = ({
           </Grid>
         </AccordionDetails>
       </Accordion>
-  
+
       <Accordion className="custom-accordion">
         <AccordionSummary
           expandIcon={<span className="expand-icon">↓</span>}
@@ -201,7 +201,7 @@ const AddCharacterMenu = ({
               <Grid item key={mod.symbol}>
                 <Tooltip title={mod.name}>
                   <Button
-                    className={`subplace-button ${subplaces.includes(mod.name) ? 'contained' : ''}`}
+                    className={`subplace-button ${subplaces.includes(mod.name) ? "contained" : ""}`}
                     onClick={() => toggleSubplace(mod.name)}
                     size="small"
                   >
@@ -213,7 +213,7 @@ const AddCharacterMenu = ({
           </Grid>
         </AccordionDetails>
       </Accordion>
-  
+
       <Accordion className="custom-accordion">
         <AccordionSummary
           expandIcon={<span className="expand-icon">↓</span>}
@@ -227,7 +227,7 @@ const AddCharacterMenu = ({
               <Grid item key={mod.symbol}>
                 <Tooltip title={mod.name}>
                   <Button
-                    className={`submanner-button ${submanners.includes(mod.name) ? 'contained' : ''}`}
+                    className={`submanner-button ${submanners.includes(mod.name) ? "contained" : ""}`}
                     onClick={() => toggleSubmanner(mod.name)}
                     size="small"
                   >
@@ -239,13 +239,13 @@ const AddCharacterMenu = ({
           </Grid>
         </AccordionDetails>
       </Accordion>
-  
+
       <Box className="character-preview">
         <Typography variant="h3" className="preview-text">
           {finalChar}
         </Typography>
       </Box>
-  
+
       <Button type="submit" variant="contained" className="action-button">
         Add Character
       </Button>

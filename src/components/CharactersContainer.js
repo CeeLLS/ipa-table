@@ -37,7 +37,7 @@ const allPlaces = [
 function CharactersContainer() {
   const [editableData, setEditableData] = useState(json);
   const combinedData = [...editableData, ...fixedData];
-  
+
   const [tokens, setTokens] = useState([]);
   const [manners, setManners] = useState({});
   const [addedChars, setAddedChars] = useState(new Set());
@@ -64,17 +64,17 @@ function CharactersContainer() {
   };
 
   const handleTokenUpdate = (oldChar, updatedToken) => {
-    setEditableData(prev => 
-      prev.map(c => c.char === oldChar ? updatedToken : c)
+    setEditableData((prev) =>
+      prev.map((c) => (c.char === oldChar ? updatedToken : c)),
     );
-    
+
     if (tokens.includes(oldChar)) {
-      setTokens(prev => 
-        prev.map(t => t === oldChar ? updatedToken.char : t)
+      setTokens((prev) =>
+        prev.map((t) => (t === oldChar ? updatedToken.char : t)),
       );
     }
-    
-    setManners(prev => {
+
+    setManners((prev) => {
       const cleaned = removeCharLogic(prev, oldChar);
       return addCharLogic(cleaned, updatedToken.char, combinedData);
     });
@@ -82,21 +82,20 @@ function CharactersContainer() {
 
   return (
     <div>
-      <VirtualKeyboard chars={editableData} onSelect={handleSelect} />
+      {/* <VirtualKeyboard chars={editableData} onSelect={handleSelect} /> */}
       <FixedCharactersTable onSelectFixed={handleSelect} />
-      
-    <div className="form-container">
-      <AddCharacterMenu 
-        availableManners={allManners}
-        availablePlaces={allPlaces}
-      />
-      <TokenEditor
-        tokens={tokens}
-        combinedData={combinedData}
-        onTokenUpdate={handleTokenUpdate}
-      />
-    </div>
 
+      <div className="form-container">
+        <AddCharacterMenu
+          availableManners={allManners}
+          availablePlaces={allPlaces}
+        />
+        <TokenEditor
+          tokens={tokens}
+          combinedData={combinedData}
+          onTokenUpdate={handleTokenUpdate}
+        />
+      </div>
 
       <TokenDisplay tokens={tokens} onRemove={handleRemove} />
       <FilterButtons

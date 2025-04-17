@@ -7,7 +7,11 @@ function CharactersTable({ manners, ignoreManners, ignorePlaces }) {
   return (
     <Table>
       <TableHeader manners={manners} ignorePlaces={ignorePlaces} />
-      <TableBody manners={manners} ignoreManners={ignoreManners} ignorePlaces={ignorePlaces} />
+      <TableBody
+        manners={manners}
+        ignoreManners={ignoreManners}
+        ignorePlaces={ignorePlaces}
+      />
     </Table>
   );
 }

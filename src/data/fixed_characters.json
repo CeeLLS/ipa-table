@@ -1,61 +1,415 @@
 [
-  { "char": "p", "place": ["Bilabial"], "subplace": [], "manner": ["Plosive"], "submanner": ["Voiceless"] },
-  { "char": "b", "place": ["Bilabial"], "subplace": [], "manner": ["Plosive"], "submanner": ["Voiced"] },
-  { "char": "t", "place": ["Dental", "Alveolar", "Postalveolar"], "subplace": [], "manner": ["Plosive"], "submanner": ["Voiceless"] },
-  { "char": "d", "place": ["Dental", "Alveolar", "Postalveolar"], "subplace": [], "manner": ["Plosive"], "submanner": ["Voiced"] },
-  { "char": "ʈ", "place": ["Retroflex"], "subplace": [], "manner": ["Plosive"], "submanner": ["Voiceless"] },
-  { "char": "ɖ", "place": ["Retroflex"], "subplace": [], "manner": ["Plosive"], "submanner": ["Voiced"] },
-  { "char": "c", "place": ["Palatal"], "subplace": [], "manner": ["Plosive"], "submanner": ["Voiceless"] },
-  { "char": "ɟ", "place": ["Palatal"], "subplace": [], "manner": ["Plosive"], "submanner": ["Voiced"] },
-  { "char": "k", "place": ["Velar"], "subplace": [], "manner": ["Plosive"], "submanner": ["Voiceless"] },
-  { "char": "g", "place": ["Velar"], "subplace": [], "manner": ["Plosive"], "submanner": ["Voiced"] },
-  { "char": "q", "place": ["Uvular"], "subplace": [], "manner": ["Plosive"], "submanner": ["Voiceless"] },
-  { "char": "ɢ", "place": ["Uvular"], "subplace": [], "manner": ["Plosive"], "submanner": ["Voiced"] },
-  { "char": "ʔ", "place": ["Glottal"], "subplace": [], "manner": ["Plosive"], "submanner": ["Voiceless"] },
-  { "char": "m", "place": ["Bilabial"], "subplace": [], "manner": ["Nasal"], "submanner": ["Voiced"] },
-  { "char": "ɱ", "place": ["Labiodental"], "subplace": [], "manner": ["Nasal"], "submanner": ["Voiced"] },
-  { "char": "n", "place": ["Dental", "Alveolar", "Postalveolar"], "subplace": [], "manner": ["Nasal"], "submanner": ["Voiced"] },
-  { "char": "ɳ", "place": ["Retroflex"], "subplace": [], "manner": ["Nasal"], "submanner": ["Voiced"] },
-  { "char": "ɲ", "place": ["Palatal"], "subplace": [], "manner": ["Nasal"], "submanner": ["Voiced"] },
-  { "char": "ŋ", "place": ["Velar"], "subplace": [], "manner": ["Nasal"], "submanner": ["Voiced"] },
-  { "char": "ɴ", "place": ["Uvular"], "subplace": [], "manner": ["Nasal"], "submanner": ["Voiced"] },
-  { "char": "ʙ", "place": ["Bilabial"], "subplace": [], "manner": ["Trill"], "submanner": ["Voiced"] },
-  { "char": "r", "place": ["Alveolar"], "subplace": [], "manner": ["Trill"], "submanner": ["Voiced"] },
-  { "char": "ʀ", "place": ["Uvular"], "subplace": [], "manner": ["Trill"], "submanner": ["Voiced"] },
-  { "char": "ⱱ", "place": ["Labiodental"], "subplace": [], "manner": ["Tap/Flap"], "submanner": ["Voiced"] },
-  { "char": "ɾ", "place": ["Alveolar"], "subplace": [], "manner": ["Tap/Flap"], "submanner": ["Voiced"] },
-  { "char": "ɽ", "place": ["Retroflex"], "subplace": [], "manner": ["Tap/Flap"], "submanner": ["Voiced"] },
-  { "char": "ɸ", "place": ["Bilabial"], "subplace": [], "manner": ["Fricative"], "submanner": ["Voiceless"] },
-  { "char": "β", "place": ["Bilabial"], "subplace": [], "manner": ["Fricative"], "submanner": ["Voiced"] },
-  { "char": "f", "place": ["Labiodental"], "subplace": [], "manner": ["Fricative"], "submanner": ["Voiceless"] },
-  { "char": "v", "place": ["Labiodental"], "subplace": [], "manner": ["Fricative"], "submanner": ["Voiced"] },
-  { "char": "θ", "place": ["Dental"], "subplace": [], "manner": ["Fricative"], "submanner": ["Voiceless"] },
-  { "char": "ð", "place": ["Dental"], "subplace": [], "manner": ["Fricative"], "submanner": ["Voiced"] },
-  { "char": "s", "place": ["Alveolar"], "subplace": [], "manner": ["Fricative"], "submanner": ["Voiceless"] },
-  { "char": "z", "place": ["Alveolar"], "subplace": [], "manner": ["Fricative"], "submanner": ["Voiced"] },
-  { "char": "ʃ", "place": ["Postalveolar"], "subplace": [], "manner": ["Fricative"], "submanner": ["Voiceless"] },
-  { "char": "ʒ", "place": ["Postalveolar"], "subplace": [], "manner": ["Fricative"], "submanner": ["Voiced"] },
-  { "char": "ʂ", "place": ["Retroflex"], "subplace": [], "manner": ["Fricative"], "submanner": ["Voiceless"] },
-  { "char": "ʐ", "place": ["Retroflex"], "subplace": [], "manner": ["Fricative"], "submanner": ["Voiced"] },
-  { "char": "ç", "place": ["Palatal"], "subplace": [], "manner": ["Fricative"], "submanner": ["Voiceless"] },
-  { "char": "ʝ", "place": ["Palatal"], "subplace": [], "manner": ["Fricative"], "submanner": ["Voiced"] },
-  { "char": "x", "place": ["Velar"], "subplace": [], "manner": ["Fricative"], "submanner": ["Voiceless"] },
-  { "char": "ɣ", "place": ["Velar"], "subplace": [], "manner": ["Fricative"], "submanner": ["Voiced"] },
-  { "char": "χ", "place": ["Uvular"], "subplace": [], "manner": ["Fricative"], "submanner": ["Voiceless"] },
-  { "char": "ʁ", "place": ["Uvular"], "subplace": [], "manner": ["Fricative"], "submanner": ["Voiced"] },
-  { "char": "ħ", "place": ["Pharyngeal"], "subplace": [], "manner": ["Fricative"], "submanner": ["Voiceless"] },
-  { "char": "ʕ", "place": ["Pharyngeal"], "subplace": [], "manner": ["Fricative"], "submanner": ["Voiced"] },
-  { "char": "h", "place": ["Glottal"], "subplace": [], "manner": ["Fricative"], "submanner": ["Voiceless"] },
-  { "char": "ɦ", "place": ["Glottal"], "subplace": [], "manner": ["Fricative"], "submanner": ["Voiced"] },
-  { "char": "ɬ", "place": ["Alveolar"], "subplace": [], "manner": ["Lateral Fricative"], "submanner": ["Voiceless"] },
-  { "char": "ɮ", "place": ["Alveolar"], "subplace": [], "manner": ["Lateral Fricative"], "submanner": ["Voiced"] },
-  { "char": "ʋ", "place": ["Labiodental"], "subplace": [], "manner": ["Approximant"], "submanner": ["Voiced"] },
-  { "char": "ɹ", "place": ["Alveolar"], "subplace": [], "manner": ["Approximant"], "submanner": ["Voiced"] },
-  { "char": "ɻ", "place": ["Retroflex"], "subplace": [], "manner": ["Approximant"], "submanner": ["Voiced"] },
-  { "char": "j", "place": ["Palatal"], "subplace": [], "manner": ["Approximant"], "submanner": ["Voiced"] },
-  { "char": "ɰ", "place": ["Velar"], "subplace": [], "manner": ["Approximant"], "submanner": ["Voiced"] },
-  { "char": "l", "place": ["Alveolar"], "subplace": [], "manner": ["Lateral Approximant"], "submanner": ["Voiced"] },
-  { "char": "ɭ", "place": ["Retroflex"], "subplace": [], "manner": ["Lateral Approximant"], "submanner": ["Voiced"] },
-  { "char": "ʎ", "place": ["Palatal"], "subplace": [], "manner": ["Lateral Approximant"], "submanner": ["Voiced"] },
-  { "char": "ʟ", "place": ["Velar"], "subplace": [], "manner": ["Lateral Approximant"], "submanner": ["Voiced"] }
+  {
+    "char": "p",
+    "place": ["Bilabial"],
+    "subplace": [],
+    "manner": ["Plosive"],
+    "submanner": ["Voiceless"]
+  },
+  {
+    "char": "b",
+    "place": ["Bilabial"],
+    "subplace": [],
+    "manner": ["Plosive"],
+    "submanner": ["Voiced"]
+  },
+  {
+    "char": "t",
+    "place": ["Dental", "Alveolar", "Postalveolar"],
+    "subplace": [],
+    "manner": ["Plosive"],
+    "submanner": ["Voiceless"]
+  },
+  {
+    "char": "d",
+    "place": ["Dental", "Alveolar", "Postalveolar"],
+    "subplace": [],
+    "manner": ["Plosive"],
+    "submanner": ["Voiced"]
+  },
+  {
+    "char": "ʈ",
+    "place": ["Retroflex"],
+    "subplace": [],
+    "manner": ["Plosive"],
+    "submanner": ["Voiceless"]
+  },
+  {
+    "char": "ɖ",
+    "place": ["Retroflex"],
+    "subplace": [],
+    "manner": ["Plosive"],
+    "submanner": ["Voiced"]
+  },
+  {
+    "char": "c",
+    "place": ["Palatal"],
+    "subplace": [],
+    "manner": ["Plosive"],
+    "submanner": ["Voiceless"]
+  },
+  {
+    "char": "ɟ",
+    "place": ["Palatal"],
+    "subplace": [],
+    "manner": ["Plosive"],
+    "submanner": ["Voiced"]
+  },
+  {
+    "char": "k",
+    "place": ["Velar"],
+    "subplace": [],
+    "manner": ["Plosive"],
+    "submanner": ["Voiceless"]
+  },
+  {
+    "char": "g",
+    "place": ["Velar"],
+    "subplace": [],
+    "manner": ["Plosive"],
+    "submanner": ["Voiced"]
+  },
+  {
+    "char": "q",
+    "place": ["Uvular"],
+    "subplace": [],
+    "manner": ["Plosive"],
+    "submanner": ["Voiceless"]
+  },
+  {
+    "char": "ɢ",
+    "place": ["Uvular"],
+    "subplace": [],
+    "manner": ["Plosive"],
+    "submanner": ["Voiced"]
+  },
+  {
+    "char": "ʔ",
+    "place": ["Glottal"],
+    "subplace": [],
+    "manner": ["Plosive"],
+    "submanner": ["Voiceless"]
+  },
+  {
+    "char": "m",
+    "place": ["Bilabial"],
+    "subplace": [],
+    "manner": ["Nasal"],
+    "submanner": ["Voiced"]
+  },
+  {
+    "char": "ɱ",
+    "place": ["Labiodental"],
+    "subplace": [],
+    "manner": ["Nasal"],
+    "submanner": ["Voiced"]
+  },
+  {
+    "char": "n",
+    "place": ["Dental", "Alveolar", "Postalveolar"],
+    "subplace": [],
+    "manner": ["Nasal"],
+    "submanner": ["Voiced"]
+  },
+  {
+    "char": "ɳ",
+    "place": ["Retroflex"],
+    "subplace": [],
+    "manner": ["Nasal"],
+    "submanner": ["Voiced"]
+  },
+  {
+    "char": "ɲ",
+    "place": ["Palatal"],
+    "subplace": [],
+    "manner": ["Nasal"],
+    "submanner": ["Voiced"]
+  },
+  {
+    "char": "ŋ",
+    "place": ["Velar"],
+    "subplace": [],
+    "manner": ["Nasal"],
+    "submanner": ["Voiced"]
+  },
+  {
+    "char": "ɴ",
+    "place": ["Uvular"],
+    "subplace": [],
+    "manner": ["Nasal"],
+    "submanner": ["Voiced"]
+  },
+  {
+    "char": "ʙ",
+    "place": ["Bilabial"],
+    "subplace": [],
+    "manner": ["Trill"],
+    "submanner": ["Voiced"]
+  },
+  {
+    "char": "r",
+    "place": ["Alveolar"],
+    "subplace": [],
+    "manner": ["Trill"],
+    "submanner": ["Voiced"]
+  },
+  {
+    "char": "ʀ",
+    "place": ["Uvular"],
+    "subplace": [],
+    "manner": ["Trill"],
+    "submanner": ["Voiced"]
+  },
+  {
+    "char": "ⱱ",
+    "place": ["Labiodental"],
+    "subplace": [],
+    "manner": ["Tap/Flap"],
+    "submanner": ["Voiced"]
+  },
+  {
+    "char": "ɾ",
+    "place": ["Alveolar"],
+    "subplace": [],
+    "manner": ["Tap/Flap"],
+    "submanner": ["Voiced"]
+  },
+  {
+    "char": "ɽ",
+    "place": ["Retroflex"],
+    "subplace": [],
+    "manner": ["Tap/Flap"],
+    "submanner": ["Voiced"]
+  },
+  {
+    "char": "ɸ",
+    "place": ["Bilabial"],
+    "subplace": [],
+    "manner": ["Fricative"],
+    "submanner": ["Voiceless"]
+  },
+  {
+    "char": "β",
+    "place": ["Bilabial"],
+    "subplace": [],
+    "manner": ["Fricative"],
+    "submanner": ["Voiced"]
+  },
+  {
+    "char": "f",
+    "place": ["Labiodental"],
+    "subplace": [],
+    "manner": ["Fricative"],
+    "submanner": ["Voiceless"]
+  },
+  {
+    "char": "v",
+    "place": ["Labiodental"],
+    "subplace": [],
+    "manner": ["Fricative"],
+    "submanner": ["Voiced"]
+  },
+  {
+    "char": "θ",
+    "place": ["Dental"],
+    "subplace": [],
+    "manner": ["Fricative"],
+    "submanner": ["Voiceless"]
+  },
+  {
+    "char": "ð",
+    "place": ["Dental"],
+    "subplace": [],
+    "manner": ["Fricative"],
+    "submanner": ["Voiced"]
+  },
+  {
+    "char": "s",
+    "place": ["Alveolar"],
+    "subplace": [],
+    "manner": ["Fricative"],
+    "submanner": ["Voiceless"]
+  },
+  {
+    "char": "z",
+    "place": ["Alveolar"],
+    "subplace": [],
+    "manner": ["Fricative"],
+    "submanner": ["Voiced"]
+  },
+  {
+    "char": "ʃ",
+    "place": ["Postalveolar"],
+    "subplace": [],
+    "manner": ["Fricative"],
+    "submanner": ["Voiceless"]
+  },
+  {
+    "char": "ʒ",
+    "place": ["Postalveolar"],
+    "subplace": [],
+    "manner": ["Fricative"],
+    "submanner": ["Voiced"]
+  },
+  {
+    "char": "ʂ",
+    "place": ["Retroflex"],
+    "subplace": [],
+    "manner": ["Fricative"],
+    "submanner": ["Voiceless"]
+  },
+  {
+    "char": "ʐ",
+    "place": ["Retroflex"],
+    "subplace": [],
+    "manner": ["Fricative"],
+    "submanner": ["Voiced"]
+  },
+  {
+    "char": "ç",
+    "place": ["Palatal"],
+    "subplace": [],
+    "manner": ["Fricative"],
+    "submanner": ["Voiceless"]
+  },
+  {
+    "char": "ʝ",
+    "place": ["Palatal"],
+    "subplace": [],
+    "manner": ["Fricative"],
+    "submanner": ["Voiced"]
+  },
+  {
+    "char": "x",
+    "place": ["Velar"],
+    "subplace": [],
+    "manner": ["Fricative"],
+    "submanner": ["Voiceless"]
+  },
+  {
+    "char": "ɣ",
+    "place": ["Velar"],
+    "subplace": [],
+    "manner": ["Fricative"],
+    "submanner": ["Voiced"]
+  },
+  {
+    "char": "χ",
+    "place": ["Uvular"],
+    "subplace": [],
+    "manner": ["Fricative"],
+    "submanner": ["Voiceless"]
+  },
+  {
+    "char": "ʁ",
+    "place": ["Uvular"],
+    "subplace": [],
+    "manner": ["Fricative"],
+    "submanner": ["Voiced"]
+  },
+  {
+    "char": "ħ",
+    "place": ["Pharyngeal"],
+    "subplace": [],
+    "manner": ["Fricative"],
+    "submanner": ["Voiceless"]
+  },
+  {
+    "char": "ʕ",
+    "place": ["Pharyngeal"],
+    "subplace": [],
+    "manner": ["Fricative"],
+    "submanner": ["Voiced"]
+  },
+  {
+    "char": "h",
+    "place": ["Glottal"],
+    "subplace": [],
+    "manner": ["Fricative"],
+    "submanner": ["Voiceless"]
+  },
+  {
+    "char": "ɦ",
+    "place": ["Glottal"],
+    "subplace": [],
+    "manner": ["Fricative"],
+    "submanner": ["Voiced"]
+  },
+  {
+    "char": "ɬ",
+    "place": ["Alveolar"],
+    "subplace": [],
+    "manner": ["Lateral Fricative"],
+    "submanner": ["Voiceless"]
+  },
+  {
+    "char": "ɮ",
+    "place": ["Alveolar"],
+    "subplace": [],
+    "manner": ["Lateral Fricative"],
+    "submanner": ["Voiced"]
+  },
+  {
+    "char": "ʋ",
+    "place": ["Labiodental"],
+    "subplace": [],
+    "manner": ["Approximant"],
+    "submanner": ["Voiced"]
+  },
+  {
+    "char": "ɹ",
+    "place": ["Alveolar"],
+    "subplace": [],
+    "manner": ["Approximant"],
+    "submanner": ["Voiced"]
+  },
+  {
+    "char": "ɻ",
+    "place": ["Retroflex"],
+    "subplace": [],
+    "manner": ["Approximant"],
+    "submanner": ["Voiced"]
+  },
+  {
+    "char": "j",
+    "place": ["Palatal"],
+    "subplace": [],
+    "manner": ["Approximant"],
+    "submanner": ["Voiced"]
+  },
+  {
+    "char": "ɰ",
+    "place": ["Velar"],
+    "subplace": [],
+    "manner": ["Approximant"],
+    "submanner": ["Voiced"]
+  },
+  {
+    "char": "l",
+    "place": ["Alveolar"],
+    "subplace": [],
+    "manner": ["Lateral Approximant"],
+    "submanner": ["Voiced"]
+  },
+  {
+    "char": "ɭ",
+    "place": ["Retroflex"],
+    "subplace": [],
+    "manner": ["Lateral Approximant"],
+    "submanner": ["Voiced"]
+  },
+  {
+    "char": "ʎ",
+    "place": ["Palatal"],
+    "subplace": [],
+    "manner": ["Lateral Approximant"],
+    "submanner": ["Voiced"]
+  },
+  {
+    "char": "ʟ",
+    "place": ["Velar"],
+    "subplace": [],
+    "manner": ["Lateral Approximant"],
+    "submanner": ["Voiced"]
+  }
 ]

@@ -2,27 +2,33 @@ import React from "react";
 import orderConfig from "../data/orderConfig.json";
 import { TableRow, TableCell } from "@mui/material";
 
-function TableBody({ manners, ignoreManners, ignorePlaces, renderCellContent }) {
+function TableBody({
+  manners,
+  ignoreManners,
+  ignorePlaces,
+  renderCellContent,
+}) {
   const allPlaces = orderConfig.placeOrder;
-  const dynamicManners = Array.from(new Set([
-    ...orderConfig.mannerOrder,
-    ...Object.keys(manners)
-  ]));
+  const dynamicManners = Array.from(
+    new Set([...orderConfig.mannerOrder, ...Object.keys(manners)]),
+  );
 
   const allManners = dynamicManners;
 
   const getComboSubplacesForPlace = (place) => {
     if (ignorePlaces.includes(place)) return [];
     const combos = new Set();
-    Object.keys(manners).forEach(mannerKey => {
+    Object.keys(manners).forEach((mannerKey) => {
       const placeData = manners[mannerKey][place];
       if (placeData) {
-        Object.keys(placeData).forEach(subKey => {
-          placeData[subKey].forEach(item => {
+        Object.keys(placeData).forEach((subKey) => {
+          placeData[subKey].forEach((item) => {
             let subCombo;
             if (item.subplace && item.subplace.length > 0) {
-              const sortedSubplaces = Array.from(item.subplace).sort((a, b) =>
-                orderConfig.subplaceOrder.indexOf(a) - orderConfig.subplaceOrder.indexOf(b)
+              const sortedSubplaces = Array.from(item.subplace).sort(
+                (a, b) =>
+                  orderConfig.subplaceOrder.indexOf(a) -
+                  orderConfig.subplaceOrder.indexOf(b),
               );
               subCombo = sortedSubplaces.join(" & ");
             } else {
@@ -47,11 +53,11 @@ function TableBody({ manners, ignoreManners, ignorePlaces, renderCellContent }) 
     return combosArr;
   };
 
-  const placesWithData = allPlaces.filter(place =>
-    Object.keys(manners).some(mKey => manners[mKey]?.[place])
+  const placesWithData = allPlaces.filter((place) =>
+    Object.keys(manners).some((mKey) => manners[mKey]?.[place]),
   );
   const columns = [];
-  placesWithData.forEach(place => {
+  placesWithData.forEach((place) => {
     if (ignorePlaces.includes(place)) {
       columns.push({ place, subplace: null });
     } else {
@@ -59,7 +65,7 @@ function TableBody({ manners, ignoreManners, ignorePlaces, renderCellContent }) 
       if (combos.length === 0) {
         columns.push({ place, subplace: null });
       } else {
-        combos.forEach(combo => columns.push({ place, subplace: combo }));
+        combos.forEach((combo) => columns.push({ place, subplace: combo }));
       }
     }
   });
@@ -89,7 +95,7 @@ function TableBody({ manners, ignoreManners, ignorePlaces, renderCellContent }) 
     const placeData = manners[manner][col.place] || {};
     let items = [];
     if (col.subplace === null) {
-      Object.keys(placeData).forEach(sub => {
+      Object.keys(placeData).forEach((sub) => {
         items = items.concat(placeData[sub] || []);
       });
     } else {
@@ -102,16 +108,18 @@ function TableBody({ manners, ignoreManners, ignorePlaces, renderCellContent }) 
     const items = [];
     const placeData = manners[manner][place] || {};
     if (subCombo === null) {
-      Object.keys(placeData).forEach(subKey => {
+      Object.keys(placeData).forEach((subKey) => {
         items.push(...(placeData[subKey] || []));
       });
     } else {
-      Object.keys(placeData).forEach(subKey => {
-        placeData[subKey].forEach(item => {
+      Object.keys(placeData).forEach((subKey) => {
+        placeData[subKey].forEach((item) => {
           let combo;
           if (item.subplace && item.subplace.length > 0) {
-            const sortedSubplaces = Array.from(item.subplace).sort((a, b) =>
-              orderConfig.subplaceOrder.indexOf(a) - orderConfig.subplaceOrder.indexOf(b)
+            const sortedSubplaces = Array.from(item.subplace).sort(
+              (a, b) =>
+                orderConfig.subplaceOrder.indexOf(a) -
+                orderConfig.subplaceOrder.indexOf(b),
             );
             combo = sortedSubplaces.join(" & ");
           } else {
@@ -129,7 +137,7 @@ function TableBody({ manners, ignoreManners, ignorePlaces, renderCellContent }) 
   const computeCellData = (manner, col, filterFn, extraKeyPart = "") => {
     const items = getColumnItems(manner, col);
     const filteredItems = filterFn ? items.filter(filterFn) : items;
-    const uniqueChars = Array.from(new Set(filteredItems.map(i => i.char)));
+    const uniqueChars = Array.from(new Set(filteredItems.map((i) => i.char)));
     return {
       key: `${manner}-${col.place}-${col.subplace || "all"}${extraKeyPart}`,
       content: uniqueChars.join(" "),
@@ -137,10 +145,12 @@ function TableBody({ manners, ignoreManners, ignorePlaces, renderCellContent }) 
   };
 
   const hasDataForManner = (manner) => {
-    return Object.keys(manners).some(mKey => {
-      return Object.keys(manners[mKey] || {}).some(place => {
-        return Object.keys(manners[mKey][place] || {}).some(sub =>
-          manners[mKey][place][sub].some(item => item.manner.includes(manner))
+    return Object.keys(manners).some((mKey) => {
+      return Object.keys(manners[mKey] || {}).some((place) => {
+        return Object.keys(manners[mKey][place] || {}).some((sub) =>
+          manners[mKey][place][sub].some((item) =>
+            item.manner.includes(manner),
+          ),
         );
       });
     });
@@ -148,15 +158,15 @@ function TableBody({ manners, ignoreManners, ignorePlaces, renderCellContent }) 
 
   const getUniqueCombos = (manner) => {
     let itemsForManner = [];
-    Object.keys(manners[manner] || {}).forEach(place => {
-      Object.keys(manners[manner][place] || {}).forEach(sub => {
+    Object.keys(manners[manner] || {}).forEach((place) => {
+      Object.keys(manners[manner][place] || {}).forEach((sub) => {
         itemsForManner.push(...(manners[manner][place][sub] || []));
       });
     });
     const comboSet = new Set(
-      itemsForManner.map(item =>
-        Array.from(new Set(item.submanner)).sort().join("|")
-      )
+      itemsForManner.map((item) =>
+        Array.from(new Set(item.submanner)).sort().join("|"),
+      ),
     );
     let uniqueCombos = Array.from(comboSet);
     if (uniqueCombos.length === 0) uniqueCombos.push("all");
@@ -165,22 +175,29 @@ function TableBody({ manners, ignoreManners, ignorePlaces, renderCellContent }) 
 
   return (
     <>
-      {allManners.map(manner => {
+      {allManners.map((manner) => {
         if (!manners[manner] || !hasDataForManner(manner)) return null;
 
         if (ignoreManners.includes(manner)) {
-          const cellData = columns.map(col =>
-            computeCellData(manner, col)
-          );
+          const cellData = columns.map((col) => computeCellData(manner, col));
           const mergedCells = mergeCells(cellData);
           return (
             <TableRow key={manner}>
-              <TableCell align="center" colSpan={2}>{manner}</TableCell>
-              {mergedCells.map(cell => (
+              <TableCell align="center" colSpan={2}>
+                {manner}
+              </TableCell>
+              {mergedCells.map((cell) => (
                 <TableCell key={cell.key} align="center" colSpan={cell.colSpan}>
-                  {cell.content.split(" ").filter(Boolean).map((ch, idx) =>
-                    renderCellContent ? renderCellContent(ch, idx) : <div key={idx}>/{ch}/</div>
-                  )}
+                  {cell.content
+                    .split(" ")
+                    .filter(Boolean)
+                    .map((ch, idx) =>
+                      renderCellContent ? (
+                        renderCellContent(ch, idx)
+                      ) : (
+                        <div key={idx}>/{ch}/</div>
+                      ),
+                    )}
                 </TableCell>
               ))}
             </TableRow>
@@ -189,20 +206,33 @@ function TableBody({ manners, ignoreManners, ignorePlaces, renderCellContent }) 
           const uniqueCombos = getUniqueCombos(manner);
           if (uniqueCombos.length === 1) {
             const combo = uniqueCombos[0];
-            const filterFn = item =>
+            const filterFn = (item) =>
               Array.from(new Set(item.submanner)).sort().join("|") === combo;
-            const cellData = columns.map(col =>
-              computeCellData(manner, col, filterFn)
+            const cellData = columns.map((col) =>
+              computeCellData(manner, col, filterFn),
             );
             const mergedCells = mergeCells(cellData);
             return (
               <TableRow key={manner}>
-                <TableCell align="center" colSpan={2}>{manner}</TableCell>
-                {mergedCells.map(cell => (
-                  <TableCell key={cell.key} align="center" colSpan={cell.colSpan}>
-                    {cell.content.split(" ").filter(Boolean).map((ch, idx) =>
-                      renderCellContent ? renderCellContent(ch, idx) : <div key={idx}>/{ch}/</div>
-                    )}
+                <TableCell align="center" colSpan={2}>
+                  {manner}
+                </TableCell>
+                {mergedCells.map((cell) => (
+                  <TableCell
+                    key={cell.key}
+                    align="center"
+                    colSpan={cell.colSpan}
+                  >
+                    {cell.content
+                      .split(" ")
+                      .filter(Boolean)
+                      .map((ch, idx) =>
+                        renderCellContent ? (
+                          renderCellContent(ch, idx)
+                        ) : (
+                          <div key={idx}>/{ch}/</div>
+                        ),
+                      )}
                   </TableCell>
                 ))}
               </TableRow>
@@ -212,10 +242,11 @@ function TableBody({ manners, ignoreManners, ignorePlaces, renderCellContent }) 
               <React.Fragment key={manner}>
                 {uniqueCombos.map((combo, comboIdx) => {
                   const groupLabel = combo.split("|").join(" & ");
-                  const filterFn = item =>
-                    Array.from(new Set(item.submanner)).sort().join("|") === combo;
-                  const cellData = columns.map(col =>
-                    computeCellData(manner, col, filterFn, `-${groupLabel}`)
+                  const filterFn = (item) =>
+                    Array.from(new Set(item.submanner)).sort().join("|") ===
+                    combo;
+                  const cellData = columns.map((col) =>
+                    computeCellData(manner, col, filterFn, `-${groupLabel}`),
                   );
                   const mergedCells = mergeCells(cellData);
                   return (
@@ -226,11 +257,22 @@ function TableBody({ manners, ignoreManners, ignorePlaces, renderCellContent }) 
                         </TableCell>
                       )}
                       <TableCell align="center">{groupLabel}</TableCell>
-                      {mergedCells.map(cell => (
-                        <TableCell key={cell.key} align="center" colSpan={cell.colSpan}>
-                          {cell.content.split(" ").filter(Boolean).map((ch, idx) =>
-                            renderCellContent ? renderCellContent(ch, idx) : <div key={idx}>/{ch}/</div>
-                          )}
+                      {mergedCells.map((cell) => (
+                        <TableCell
+                          key={cell.key}
+                          align="center"
+                          colSpan={cell.colSpan}
+                        >
+                          {cell.content
+                            .split(" ")
+                            .filter(Boolean)
+                            .map((ch, idx) =>
+                              renderCellContent ? (
+                                renderCellContent(ch, idx)
+                              ) : (
+                                <div key={idx}>/{ch}/</div>
+                              ),
+                            )}
                         </TableCell>
                       ))}
                     </TableRow>

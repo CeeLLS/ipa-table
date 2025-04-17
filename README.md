@@ -1,2 +1,7 @@
 # langTable
-A phonetic inventory organizer 
+
+A phonetic inventory maker
+
+
+
+it's all a mess, i'm work on it 

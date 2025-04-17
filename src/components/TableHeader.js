@@ -5,7 +5,6 @@ import orderConfig from "../data/orderConfig.json";
 function TableHeader({ manners, ignorePlaces }) {
   const allPlaces = orderConfig.placeOrder;
 
-
   const getSubplacesForPlace = (place) => {
     if (ignorePlaces.includes(place)) return [];
     const combos = new Set();
@@ -16,8 +15,10 @@ function TableHeader({ manners, ignorePlaces }) {
           placeData[subKey].forEach((item) => {
             let subCombo;
             if (item.subplace && item.subplace.length > 0) {
-              const sortedSubplaces = Array.from(item.subplace).sort((a, b) =>
-                orderConfig.subplaceOrder.indexOf(a) - orderConfig.subplaceOrder.indexOf(b)
+              const sortedSubplaces = Array.from(item.subplace).sort(
+                (a, b) =>
+                  orderConfig.subplaceOrder.indexOf(a) -
+                  orderConfig.subplaceOrder.indexOf(b),
               );
               subCombo = sortedSubplaces.join(" & ");
             } else {
@@ -43,7 +44,7 @@ function TableHeader({ manners, ignorePlaces }) {
   };
 
   const placesWithData = allPlaces.filter((place) =>
-    Object.keys(manners).some((manner) => manners[manner]?.[place])
+    Object.keys(manners).some((manner) => manners[manner]?.[place]),
   );
 
   return (
@@ -53,7 +54,10 @@ function TableHeader({ manners, ignorePlaces }) {
         <TableCell />
         {placesWithData.map((place) => {
           const subs = getSubplacesForPlace(place);
-          if (ignorePlaces.includes(place) || (subs.length === 1 && subs[0] === "N/A")) {
+          if (
+            ignorePlaces.includes(place) ||
+            (subs.length === 1 && subs[0] === "N/A")
+          ) {
             return (
               <TableCell key={place} align="center" rowSpan={2}>
                 {place}

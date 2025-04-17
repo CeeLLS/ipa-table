@@ -1,12 +1,19 @@
 import React from "react";
 
 const ThemeSwitch = () => {
-  const [isDark, setIsDark] = React.useState(false);
+  const [isDark, setIsDark] = React.useState(() => {
+    const saved = window.localStorage.getItem("theme");
+    return saved ? saved === "dark" : true;
+  });
+
+  React.useEffect(() => {
+    const newTheme = isDark ? "dark" : "light";
+    document.documentElement.setAttribute("data-theme", newTheme);
+    window.localStorage.setItem("theme", newTheme);
+  }, [isDark]);
 
   const toggleTheme = () => {
-    const newTheme = isDark ? "light" : "dark";
-    document.documentElement.setAttribute("data-theme", newTheme);
-    setIsDark(!isDark);
+    setIsDark((prev) => !prev);
   };
 
   return (
