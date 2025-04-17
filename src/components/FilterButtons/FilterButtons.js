@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button, Box } from '@mui/material';
+// import "./FilterButtons.module.css";
 
 const FilterButtons = ({
   manners,            
@@ -62,7 +63,6 @@ const FilterButtons = ({
               key={manner}
               variant={ignoreManners.includes(manner) ? "contained" : "outlined"}
               onClick={() => toggleManner(manner)}
-              style={{ marginRight: 8, marginBottom: 8 }}
             >
               {manner}
             </Button>
@@ -77,7 +77,6 @@ const FilterButtons = ({
               key={place}
               variant={ignorePlaces.includes(place) ? "contained" : "outlined"}
               onClick={() => togglePlace(place)}
-              style={{ marginRight: 8, marginBottom: 8 }}
             >
               {place}
             </Button>

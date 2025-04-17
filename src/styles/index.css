@@ -1,13 +1,285 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* =============================== */
+/*       VARIÁVEIS GLOBAIS         */
+/* =============================== */
+:root {
+  /* Light Theme – Paleta predominante em verde */
+  --bg-color: #ffffff;
+  --text-color: #2d3748;
+  --primary-color: #38a169;      /* Verde vibrante */
+  --secondary-color: #2f855a;    /* Verde escuro */
+  --border-color: #e2e8f0;
+  --accordion-bg: #f7fafc;
+  --table-border: #edf2f7;
+  --chip-bg: #ebf8f2;
+  --switch-bg: #c6f6d5;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+[data-theme="dark"] {
+  /* Dark Theme – Base cinza com detalhes em verde */
+  --bg-color: #2c2c2c;
+  --text-color: #e0e0e0;
+  --primary-color: #4caf50;      /* Verde mais suave */
+  --secondary-color: #388e3c;
+  --border-color: #555555;
+  --accordion-bg: #3a3a3a;
+  --table-border: #444444;
+  --chip-bg: #333333;
+  --switch-bg: #555555;
+}
+
+/* =============================== */
+/*          ESTILOS GLOBAIS        */
+/* =============================== */
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Botões – Removendo uppercase e definindo transição */
+.MuiButton-root,
+button {
+  text-transform: none !important;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+}
+
+/* =============================== */
+/*   OVERRIDE DOS BOTÕES MATERIAL  */
+/* =============================== */
+.MuiButton-contained {
+  background-color: var(--primary-color) !important;
+  color: white !important;
+}
+.MuiButton-contained:hover {
+  background-color: var(--secondary-color) !important;
+}
+
+/* Caso haja botões específicos em tabelas */
+.table-button {
+  text-transform: none !important;
+  background-color: var(--primary-color) !important;
+  color: white !important;
+  font-size: 0.875rem;
+  padding: 4px 8px;
+}
+.table-button:hover {
+  background-color: var(--secondary-color) !important;
+}
+
+/* =============================== */
+/*     COMPONENTES PERSONALIZADOS  */
+/* =============================== */
+.character-preview,
+.token-item.selected,
+.save-button {
+  background-color: var(--primary-color) !important;
+  border-color: var(--primary-color) !important;
+  color: white !important;
+}
+
+/* Accordions */
+.MuiAccordionSummary-content {
+  color: var(--primary-color) !important;
+}
+.custom-accordion {
+  background-color: var(--accordion-bg) !important;
+  border: 1px solid var(--border-color) !important;
+}
+
+/* Tabelas */
+.MuiTableCell-root,
+.MuiTableRow-root {
+  background-color: transparent !important;
+  color: var(--text-color) !important;
+  border-color: var(--table-border) !important;
+}
+
+.MuiTableCell-root {
+  padding: 8px 12px !important;
+  border-bottom: 1px solid var(--table-border) !important;
+}
+
+/* Containers genéricos */
+.virtual-keyboard .MuiButton-root,
+.token-editor-paper,
+.add-character-menu,
+.filter-buttons,
+.characters-table {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+/* =============================== */
+/*          SWITCH DE TEMA         */
+/* =============================== */
+.theme-switch {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+}
+.theme-switch button {
+  background-color: var(--switch-bg);
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.theme-switch button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+[data-theme="dark"] .theme-switch button {
+  background-color: var(--secondary-color);
+  color: white;
+}
+
+/* =============================== */
+/*         TOKEN EDITOR          */
+/* =============================== */
+.token-editor-paper {
+  padding: 16px;
+  margin: 16px;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Distribuir o TokenEditor em duas colunas: token list à esquerda, dropdowns à direita */
+.token-editor-container {
+  display: flex;
+  gap: 16px;
+}
+.token-list-container {
+  flex: 1;
+  min-width: 200px;
+}
+.attribute-editor {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Títulos das seções no TokenEditor */
+.editor-section-title {
+  font-size: 1.25rem;
+  margin-bottom: 8px;
+  color: var(--primary-color);
+  font-weight: bold;
+}
+
+/* Lista de Tokens */
+.token-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.token-item {
+  padding: 6px 12px;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: var(--chip-bg);
+  color: var(--text-color);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+.token-item.selected {
+  background-color: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+}
+
+/* Estilização dos campos de seleção (selects) */
+/* Para layout em linha: rótulo à esquerda e dropdown à direita */
+.select-field {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.select-label {
+  font-weight: bold;
+  min-width: 100px;
+  color: var(--primary-color);
+}
+.select-input {
+  background-color: var(--bg-color) !important;
+  color: var(--text-color) !important;
+  border: 1px solid var(--border-color) !important;
+  border-radius: 4px !important;
+  padding: 4px 8px !important;
+}
+.select-menu-item {
+  padding: 8px 12px;
+}
+
+/* Botão de Salvar Alterações no TokenEditor */
+.save-button {
+  padding: 10px 16px;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  align-self: flex-start;
+}
+.save-button:hover {
+  background-color: var(--secondary-color);
+}
+
+/* =============================== */
+/*    ESTILIZAÇÃO DO ADD-CHARACTER */
+/* =============================== */
+.add-character-menu {
+  padding: 16px;
+  margin: 16px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+.text-input {
+  width: 100%;
+}
+.form-control-label {
+  margin-bottom: 8px;
+}
+
+
+/* Container para AddCharacterMenu e TokenEditor lado a lado */
+.form-container {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+/* Ambos os componentes ocupam espaço igual, com largura mínima para responsividade */
+.form-container > .add-character-menu,
+.form-container > .token-editor-paper {
+  flex: 1;
+  min-width: 300px;
+}
+
+/* No dark theme, o fundo do TokenEditor fica preto */
+[data-theme="dark"] .token-editor-paper {
+  background-color: var(--accordion-bg);
+  color: var(--text-color);
+}
+
+/* Espaçamento padrão para separação vertical de componentes */
+.component-spacing {
+  margin-bottom: 16px;
 }

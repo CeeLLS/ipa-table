@@ -1,6 +1,6 @@
-// src/components/TokenDisplay.js
 import React from "react";
 import { Box, Chip } from "@mui/material";
+// import "./TokenDisplay.module.css"
 
 function TokenDisplay({ tokens, onRemove, onEdit }) {
   return (
@@ -10,7 +10,6 @@ function TokenDisplay({ tokens, onRemove, onEdit }) {
           key={`${tk}-${idx}`}
           label={`/${tk}/`}
           onDelete={() => onRemove(idx)}
-          // onClick={() => onEdit(idx)}
           color="primary"
           variant="outlined"
         />

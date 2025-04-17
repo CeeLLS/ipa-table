@@ -1,0 +1,130 @@
+/* Variáveis e resets */
+/* :root  */
+/* [data-theme="dark"]  */
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.virtual-keyboard .MuiButton-root,
+.token-editor-paper,
+.add-character-menu,
+.filter-buttons,
+.characters-table {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+
+:root {
+  /* Light Theme – Paleta predominante em verde */
+  --bg-color: #ffffff;
+  --text-color: #2d3748;
+  --primary-color: #38a169; /* Verde vibrante */
+  --secondary-color: #2f855a; /* Verde escuro */
+  --border-color: #e2e8f0;
+  --accordion-bg: #f7fafc;
+  --table-border: #edf2f7;
+  --chip-bg: #ebf8f2;
+  --switch-bg: #c6f6d5;
+}
+
+[data-theme="dark"] {
+  /* Dark Theme – Base cinza com detalhes em verde */
+  --bg-color: #2c2c2c;
+  --text-color: #e0e0e0;
+  --primary-color: #4caf50; /* Verde mais suave */
+  --secondary-color: #388e3c;
+  --border-color: #555555;
+  --accordion-bg: #3a3a3a;
+  --table-border: #444444;
+  --chip-bg: #333333;
+  --switch-bg: #555555;
+}
+
+/* Overrides genéricos MUI */
+.MuiButton-root,
+button {
+  text-transform: none !important;
+  transition: background-color 0.3s ease;
+} /* :contentReference[oaicite:4]{index=4} */
+.MuiButton-contained {
+  background: var(--primary-color) !important;
+  color: white !important;
+}
+.MuiButton-contained:hover {
+  background: var(--secondary-color) !important;
+}
+
+/* Tabela */
+.MuiTableCell-root,
+.MuiTableRow-root {
+  color: var(--text-color) !important;
+  border-color: var(--table-border) !important;
+}
+.MuiTableCell-root {
+  padding: 8px 12px !important;
+  border-bottom: 1px solid var(--table-border) !important;
+}
+
+/* Accordion genérico */
+.MuiAccordionSummary-content {
+  color: var(--primary-color) !important;
+}
+.custom-accordion {
+  background: var(--accordion-bg) !important;
+  border: 1px solid var(--border-color) !important;
+}
+
+/* Theme‑switch global */
+.theme-switch {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+}
+.theme-switch button {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  border: none;
+  border-radius: 4px;
+  padding: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+[data-theme="dark"] .theme-switch button {
+    background-color: var(--secondary-color);
+    color: white;
+}
+
+    .form-container {
+        display: flex;
+        gap: 16px;
+        flex-wrap: wrap;
+        margin-bottom: 16px;
+    }
+  
+  /* Ambos os componentes ocupam espaço igual, com largura mínima para responsividade */
+  .form-container > .add-character-menu,
+  .form-container > .token-editor-paper {
+    flex: 1;
+    min-width: 300px;
+  }
+
+/* Helpers globais */
+.mt-1 {
+  margin-top: 0.5rem;
+}
+.mt-2 {
+  margin-top: 1rem;
+}
+.mb-1 {
+  margin-bottom: 0.5rem;
+}
+.mb-2 {
+  margin-bottom: 1rem;
+}

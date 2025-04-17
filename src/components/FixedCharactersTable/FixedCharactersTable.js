@@ -1,8 +1,9 @@
 import React from "react";
 import { Table, Button } from "@mui/material";
-import fixedData from "../data/fixed_characters.json";
-import TableHeader from "./TableHeader";
-import TableBody from "./TableBody";
+import fixedData from "../../data/fixed_characters.json";
+import TableHeader from "../TableHeader/TableHeader";
+import TableBody from "../TableBody/TableBody";
+// import "./FixedCharactersTable.module.css";
 
 function FixedCharactersTable({ onSelectFixed }) {
   const fixedManners = {};
@@ -32,9 +33,6 @@ function FixedCharactersTable({ onSelectFixed }) {
             variant="outlined" 
             size="small"
             onClick={() => onSelectFixed(ch)}
-            sx={{ 
-              textTransform: 'none' 
-            }}
           >
             {ch}
           </Button>

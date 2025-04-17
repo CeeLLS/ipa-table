@@ -1,6 +1,7 @@
 import React from "react";
 import { TableRow, TableCell } from "@mui/material";
-import orderConfig from "../data/orderConfig.json";
+import orderConfig from "../../data/orderConfig.json";
+// import "./TableHeader.module.css";
 
 function TableHeader({ manners, ignorePlaces }) {
   const allPlaces = orderConfig.placeOrder;
