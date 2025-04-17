@@ -5,26 +5,33 @@
   /* Light Theme – Paleta predominante em verde */
   --bg-color: #ffffff;
   --text-color: #2d3748;
-  --primary-color: #38a169;      /* Verde vibrante */
-  --secondary-color: #2f855a;    /* Verde escuro */
+  --primary-color: #38a169;
+  --secondary-color: #2f855a;
   --border-color: #e2e8f0;
   --accordion-bg: #f7fafc;
   --table-border: #edf2f7;
   --chip-bg: #ebf8f2;
   --switch-bg: #c6f6d5;
+
+  /* Custom para AddCharacterMenu */
+  --add-input-width: 280px;
+  --add-input-bg: var(--bg-color);
 }
 
 [data-theme="dark"] {
   /* Dark Theme – Base cinza com detalhes em verde */
   --bg-color: #2c2c2c;
   --text-color: #e0e0e0;
-  --primary-color: #4caf50;      /* Verde mais suave */
+  --primary-color: #4caf50;
   --secondary-color: #388e3c;
   --border-color: #555555;
   --accordion-bg: #3a3a3a;
   --table-border: #444444;
   --chip-bg: #333333;
   --switch-bg: #555555;
+
+  /* Custom para AddCharacterMenu */
+  --add-input-bg: var(--accordion-bg);
 }
 
 /* =============================== */
@@ -69,16 +76,44 @@ button {
   background-color: var(--secondary-color) !important;
 }
 
+.MuiTableCell-root .MuiButton-root {
+  border-color: var(--primary-color) !important;
+  color: var(--primary-color) !important;
+}
+.MuiTableCell-root .MuiButton-contained:hover {
+  background-color: var(--secondary-color) !important;
+}
+
+.MuiChip-root {
+  color: var(--primary-color) !important;
+  border-color: var(--primary-color)!important;
+  border-radius: 4px;
+  padding: 4px 8px;
+}
+
 /* =============================== */
 /*     COMPONENTES PERSONALIZADOS  */
 /* =============================== */
-.character-preview,
 .token-item.selected,
 .save-button {
   background-color: var(--primary-color) !important;
   border-color: var(--primary-color) !important;
   color: white !important;
 }
+
+.character-preview{
+  background-color: var(--bg-color) !important;
+  color: var(--text-color) !important;
+  border: 1px solid var(--border-color) !important;
+  padding: 16px;
+  border-radius: 8px;
+  margin: 16px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
 
 /* Accordions */
 .MuiAccordionSummary-content {
@@ -149,12 +184,13 @@ button {
 .token-editor-paper {
   padding: 16px;
   margin: 16px;
-  background-color: var(--bg-color);
-  color: var(--text-color);
   border: 1px solid var(--border-color);
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  background-color: var(--bg-color);
+  color: var(--text-color);
 }
+
+
 
 /* Distribuir o TokenEditor em duas colunas: token list à esquerda, dropdowns à direita */
 .token-editor-container {
@@ -240,6 +276,33 @@ button {
 }
 
 /* =============================== */
+/*    CONTAINERS GENÉRICOS         */
+/* =============================== */
+.virtual-keyboard .MuiButton-root,
+.token-editor-paper,
+.add-character-menu,
+.filter-buttons,
+.characters-table {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+/* =============================== */
+/*         FORM CONTAINER          */
+/* =============================== */
+.form-container {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+.form-container > .add-character-menu,
+.form-container > .token-editor-paper {
+  flex: 1;
+  min-width: 300px;
+}
+
+/* =============================== */
 /*    ESTILIZAÇÃO DO ADD-CHARACTER */
 /* =============================== */
 .add-character-menu {
@@ -248,23 +311,126 @@ button {
   border: 1px solid var(--border-color);
   border-radius: 8px;
   background-color: var(--bg-color);
+
+  /* Garante texto padrão */
   color: var(--text-color);
 }
-.text-input {
+
+
+
+/* TextField OutlinedInput */
+.add-character-menu .MuiOutlinedInput-root {
+  width: var(--add-input-width) !important;
+  background-color: var(--add-input-bg) !important;
+}
+.add-character-menu .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline {
+  border-color: var(--border-color) !important;
+}
+.add-character-menu .MuiOutlinedInput-input,
+.MuiOutlinedInput-input {
+  color: var(--text-color) !important;
+  padding: 8px 12px !important;
+  font-size: 1rem !important;
+}
+
+[data-theme="dark"] 
+
+.MuiOutlinedInput-input {
+  color: var(--text-color) !important;      
+}
+
+
+.MuiOutlinedInput-notchedOutline, .MuiFormLabel-root {
+  color: var(--text-color) !important;
+}
+
+/* Select variante Outlined */
+.add-character-menu .MuiSelect-outlined {
+  width: var(--add-input-width) !important;
+  background-color: var(--add-input-bg) !important;
+  color: var(--text-color) !important;
+}
+.add-character-menu .MuiSelect-icon {
+  color: var(--text-color) !important;
+}
+
+.expand-icon {
+  color: var(--text-color) !important;
+}
+.MuiSvgIcon-root {
+  color: var(--text-color) !important;
+}
+.css-yjsfm1 {
+  color: var(--text-color) !important;
+}
+
+/* Menu (dropdown) */
+.MuiMenu-paper {
+  background-color: var(--add-input-bg) !important;
+}
+.MuiMenuItem-root {
+  color: var(--text-color) !important;
+  font-size: 0.95rem;
+}
+.MuiMenuItem-root.Mui-selected {
+  background-color: var(--primary-color) !important;
+  color: white !important;
+}
+
+/* Preview do caractere final */
+.add-character-menu .preview-text {
+  font-size: 1.5rem;
+  margin: 12px 0;
+  color: var(--text-color) !important;
+}
+
+/* Submenu Buttons (manner/place/subplace/submanner) */
+.add-character-menu .MuiButton-root {
+  border-radius: 6px !important;
+  padding: 6px 10px !important;
+  font-size: 1rem !important;
+  color: var(--text-color) !important;
+  background-color: var(--add-input-bg) !important;
+  border: 1px solid var(--border-color) !important;
+}
+.add-character-menu .MuiButton-root:hover {
+  background-color: var(--chip-bg) !important;
+}
+/* ??? */
+.add-character-menu .MuiButton-contained {
+  background-color: var(--primary-color) !important;
+  color: white !important;
+  border-color: var(--secondary-color) !important;
+}
+.add-character-menu .MuiButton-contained:hover { 
+  background-color: var(--secondary-color) !important;
+  color: var(--text-color) !important;
+}
+
+.place-button.contained, 
+.manner-button.contained, 
+.subplace-button.contained, 
+.submanner-button.contained {
+  background-color: var(--primary-color) !important;
+  color: white !important;
+  border-color: var(--secondary-color) !important;
+}
+
+/* Submit Button */
+.add-character-menu .MuiButton-contained[type="submit"] {
+  margin-top: 16px;
   width: 100%;
-}
-.form-control-label {
-  margin-bottom: 8px;
+  font-size: 1rem !important;
 }
 
 
-/* Container para AddCharacterMenu e TokenEditor lado a lado */
+/* Container para AddCharacterMenu e TokenEditor lado a lado
 .form-container {
   display: flex;
   gap: 16px;
   flex-wrap: wrap;
   margin-bottom: 16px;
-}
+} */
 
 /* Ambos os componentes ocupam espaço igual, com largura mínima para responsividade */
 .form-container > .add-character-menu,
@@ -279,7 +445,11 @@ button {
   color: var(--text-color);
 }
 
+
+
 /* Espaçamento padrão para separação vertical de componentes */
 .component-spacing {
   margin-bottom: 16px;
 }
+
+

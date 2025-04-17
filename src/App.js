@@ -1,8 +1,8 @@
 import "./styles/App.css";
 import React from "react";
 import { Container } from "@mui/material";
-import CharactersContainer from "./components/CharactersContainer/CharactersContainer";
-import ThemeSwitch from "./components/ThemeSwitch/ThemeSwitch";
+import CharactersContainer from "./components/CharactersContainer";
+import ThemeSwitch from "./components/ThemeSwitch";
 
 function App() {
   return (
