@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/ipa-table/static/css/main.082e5376.css",
+    "main.js": "/ipa-table/static/js/main.ff135c58.js",
+    "static/js/453.853a3c72.chunk.js": "/ipa-table/static/js/453.853a3c72.chunk.js",
+    "index.html": "/ipa-table/index.html",
+    "main.082e5376.css.map": "/ipa-table/static/css/main.082e5376.css.map",
+    "main.ff135c58.js.map": "/ipa-table/static/js/main.ff135c58.js.map",
+    "453.853a3c72.chunk.js.map": "/ipa-table/static/js/453.853a3c72.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.082e5376.css",
+    "static/js/main.ff135c58.js"
+  ]
+}
