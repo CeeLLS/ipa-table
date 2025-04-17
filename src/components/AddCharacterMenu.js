@@ -16,9 +16,8 @@ import {
   AccordionSummary,
   AccordionDetails,
 } from "@mui/material";
-import ipaModifiers from "../../data/ipaModifiers.json";
-import fixedData from "../../data/fixed_characters.json";
-// import "./AddCharacterMenu.module.css";
+import ipaModifiers from "../data/ipaModifiers.json";
+import fixedData from "../data/fixed_characters.json";
 
 const AddCharacterMenu = ({
   onAddCharacter,
@@ -247,7 +246,7 @@ const AddCharacterMenu = ({
         </Typography>
       </Box>
   
-      <Button type="submit" variant="contained" className="submit-button">
+      <Button type="submit" variant="contained" className="action-button">
         Add Character
       </Button>
     </Box>

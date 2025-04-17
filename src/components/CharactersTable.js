@@ -1,8 +1,7 @@
 import React from "react";
 import { Table } from "@mui/material";
-// import "./CharactersTable.module.css"
-import TableHeader from "../TableHeader/TableHeader";
-import TableBody from "../TableBody/TableBody";
+import TableHeader from "./TableHeader";
+import TableBody from "./TableBody";
 
 function CharactersTable({ manners, ignoreManners, ignorePlaces }) {
   return (

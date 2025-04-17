@@ -1,6 +1,5 @@
 import React from "react";
 import { Box, Chip } from "@mui/material";
-// import "./TokenDisplay.module.css"
 
 function TokenDisplay({ tokens, onRemove, onEdit }) {
   return (

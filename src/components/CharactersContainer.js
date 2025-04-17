@@ -1,15 +1,14 @@
 import React, { useState } from "react";
-// import './CharactersContainer.module.css'
-import json from "../../data/characters.json";
-import fixedData from "../../data/fixed_characters.json";
-import VirtualKeyboard from "../VirtualKeyboard/VirtualKeyboard";
-import TokenDisplay from "../TokenDisplay/TokenDisplay";
-import CharactersTable from "../CharactersTable/CharactersTable";
-import FilterButtons from "../FilterButtons/FilterButtons";
-import FixedCharactersTable from "../FixedCharactersTable/FixedCharactersTable";
-import TokenEditor from "../TokenEditor/TokenEditor";
-import AddCharacterMenu from "../AddCharacterMenu/AddCharacterMenu";
-import { addCharLogic, removeCharLogic } from "../../utils/characterService";
+import json from "../data/characters.json";
+import fixedData from "../data/fixed_characters.json";
+import VirtualKeyboard from "./VirtualKeyboard";
+import TokenDisplay from "./TokenDisplay";
+import CharactersTable from "./CharactersTable";
+import FilterButtons from "./FilterButtons";
+import FixedCharactersTable from "./FixedCharactersTable";
+import TokenEditor from "./TokenEditor";
+import AddCharacterMenu from "./AddCharacterMenu";
+import { addCharLogic, removeCharLogic } from "../utils/characterService";
 
 const allManners = [
   "Plosive",

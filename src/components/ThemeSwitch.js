@@ -1,5 +1,4 @@
 import React from "react";
-// import "./ThemeSwitch.module.css";
 
 const ThemeSwitch = () => {
   const [isDark, setIsDark] = React.useState(false);

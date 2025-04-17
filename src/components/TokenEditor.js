@@ -1,7 +1,6 @@
 import React from 'react';
 import { Paper, Select, MenuItem } from '@mui/material';
-import orderConfig from '../../data/orderConfig';
-// import './TokenEditor.module.css';
+import orderConfig from '../data/orderConfig';
 
 const TokenEditor = ({ tokens, combinedData, onTokenUpdate }) => {
   const [selectedToken, setSelectedToken] = React.useState(null);

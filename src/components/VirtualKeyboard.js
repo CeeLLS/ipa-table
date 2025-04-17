@@ -1,6 +1,5 @@
 import React from "react";
 import { Box, Button } from "@mui/material";
-// import "./VirtualKeyboard.module.css";
 
 function VirtualKeyboard({ chars, onSelect }) {
   return (
