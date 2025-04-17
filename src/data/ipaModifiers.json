@@ -1,0 +1,38 @@
+{
+  "subplace": [
+    { "symbol": "ʷ", "name": "Labialized" },
+    { "symbol": "ʲ", "name": "Palatalized" },
+    { "symbol": "ˠ", "name": "Velarized" },
+    { "symbol": "ˤ", "name": "Pharyngealized" },
+    { "symbol": "̪", "name": "Dental" },
+    { "symbol": "̺", "name": "Apical" },
+    { "symbol": "̻", "name": "Laminal" },
+    { "symbol": "̼", "name": "Linguolabial" },
+    { "symbol": "̹", "name": "More rounded" },
+    { "symbol": "̜", "name": "Less rounded" },
+    { "symbol": "̟", "name": "Advanced" },
+    { "symbol": "̠", "name": "Retracted" },
+    { "symbol": "̈", "name": "Centralized" },
+    { "symbol": "̽", "name": "Mid-centralized" }
+  ],
+  "submanner": [
+    { "symbol": "ʼ", "name": "Ejective" },
+    { "symbol": "̥", "name": "Voiceless" },
+    { "symbol": "̬", "name": "Voiced" },
+    { "symbol": "ʰ", "name": "Aspirated" },
+    { "symbol": "ʱ", "name": "Breathy-voiced aspirated" },
+    { "symbol": "ˀ", "name": "Glottalized" },
+    { "symbol": "̃", "name": "Nasalized" },
+    { "symbol": "̚", "name": "No audible release" },
+    { "symbol": "̤", "name": "Breathy voice" },
+    { "symbol": "̰", "name": "Creaky voice" },
+    { "symbol": "̝", "name": "Raised" },
+    { "symbol": "̞", "name": "Lowered" },
+    { "symbol": "̩", "name": "Syllabic" },
+    { "symbol": "̯", "name": "Non-syllabic" },
+    { "symbol": "ˡ", "name": "Lateral release" },
+    { "symbol": "ⁿ", "name": "Nasal release" },
+    { "symbol": "͈", "name": "Fortis" },
+    { "symbol": "͉", "name": "Lenis" }
+  ]
+}
